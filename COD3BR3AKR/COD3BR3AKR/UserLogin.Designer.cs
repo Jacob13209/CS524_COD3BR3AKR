@@ -38,7 +38,9 @@
             this.labPassword = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.labError = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -53,7 +55,7 @@
             this.groupBox1.Controls.Add(this.txtPassword);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(168, 64);
+            this.groupBox1.Location = new System.Drawing.Point(167, 34);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(414, 243);
             this.groupBox1.TabIndex = 9;
@@ -77,10 +79,10 @@
             this.linLableForgetPass.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linLableForgetPass.Location = new System.Drawing.Point(206, 191);
             this.linLableForgetPass.Name = "linLableForgetPass";
-            this.linLableForgetPass.Size = new System.Drawing.Size(108, 15);
+            this.linLableForgetPass.Size = new System.Drawing.Size(134, 15);
             this.linLableForgetPass.TabIndex = 7;
             this.linLableForgetPass.TabStop = true;
-            this.linLableForgetPass.Text = "Forgot Password?";
+            this.linLableForgetPass.Text = "Forgot yout password?";
             this.linLableForgetPass.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linLableForgetPass_LinkClicked);
             // 
             // labUserName
@@ -154,17 +156,30 @@
             this.labError.TabIndex = 10;
             this.labError.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::COD3BR3AKR.Properties.Resources.login;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 73);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(149, 155);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
+            // 
             // UserLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(594, 363);
+            this.ClientSize = new System.Drawing.Size(594, 324);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.labError);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "UserLogin";
             this.Text = "COD3BR3AKR";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,5 +197,6 @@
         private System.Windows.Forms.Label labPassword;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label labError;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
