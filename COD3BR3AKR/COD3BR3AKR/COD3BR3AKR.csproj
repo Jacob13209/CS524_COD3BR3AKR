@@ -80,6 +80,9 @@
     <EmbeddedResource Include="UserLogin.resx">
       <DependentUpon>UserLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserManagementUI.resx">
+      <DependentUpon>UserManagementUI.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -98,6 +101,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\loginIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\userManage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\userAddReset.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

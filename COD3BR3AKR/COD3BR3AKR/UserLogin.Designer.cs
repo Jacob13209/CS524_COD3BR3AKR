@@ -34,7 +34,7 @@
             this.labUserName = new System.Windows.Forms.Label();
             this.linLabelSignUP = new System.Windows.Forms.LinkLabel();
             this.txtUserName = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.labPassword = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.labError = new System.Windows.Forms.Label();
@@ -50,7 +50,7 @@
             this.groupBox1.Controls.Add(this.labUserName);
             this.groupBox1.Controls.Add(this.linLabelSignUP);
             this.groupBox1.Controls.Add(this.txtUserName);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.btnCancel);
             this.groupBox1.Controls.Add(this.labPassword);
             this.groupBox1.Controls.Add(this.txtPassword);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -105,6 +105,7 @@
             this.linLabelSignUP.TabIndex = 6;
             this.linLabelSignUP.TabStop = true;
             this.linLabelSignUP.Text = "Sign Up as new user";
+            this.linLabelSignUP.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linLabelSignUP_LinkClicked);
             // 
             // txtUserName
             // 
@@ -115,16 +116,16 @@
             this.txtUserName.TabIndex = 1;
             this.txtUserName.TextChanged += new System.EventHandler(this.txtUserName_TextChanged);
             // 
-            // button2
+            // btnCancel
             // 
-            this.button2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(75, 136);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(78, 30);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "CANCEL";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnCancel.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Location = new System.Drawing.Point(75, 136);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(78, 30);
+            this.btnCancel.TabIndex = 5;
+            this.btnCancel.Text = "CANCEL";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // labPassword
             // 
@@ -193,7 +194,7 @@
         private System.Windows.Forms.Label labUserName;
         private System.Windows.Forms.LinkLabel linLabelSignUP;
         private System.Windows.Forms.TextBox txtUserName;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label labPassword;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label labError;

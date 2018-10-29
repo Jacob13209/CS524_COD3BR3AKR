@@ -124,4 +124,10 @@
   <data name="loginIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\loginIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="userAddReset" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\userAddReset.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="userManage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\userManage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

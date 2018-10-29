@@ -31,7 +31,7 @@ namespace COD3BR3AKR
         {
             User currentUser = new User(_username, _password);
 
-            if (UserManagementUI.IsUserAuthPass(currentUser) == true)
+            if (UserManager.IsUserAuthPass(currentUser) == true)
             {
                 string welcomeMsg = string.Format("Weclome to COD3BR3AKR! {0}", _username);
                 MessageBox.Show(welcomeMsg, "Information", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
@@ -43,15 +43,12 @@ namespace COD3BR3AKR
             }                        
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Ready to exit!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            this.Close();
-        }
 
         private void linLableForgetPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             UserManagementUI userManage = new UserManagementUI();
+            userManage.ManageMode = UserManagementUI.UserManageMode.ePasswordReset;
+
             userManage.Show();
         }
 
@@ -75,6 +72,20 @@ namespace COD3BR3AKR
             {
                 this._password = this.txtPassword.Text;
             }
+        }
+
+        private void linLabelSignUP_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            UserManagementUI userManage = new UserManagementUI();
+            userManage.ManageMode = UserManagementUI.UserManageMode.eNewUser;
+
+            userManage.Show();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Ready to exit!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            this.Close();
         }
     }
 }
