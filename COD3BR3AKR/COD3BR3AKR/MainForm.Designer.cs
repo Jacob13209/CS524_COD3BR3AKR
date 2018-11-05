@@ -41,36 +41,37 @@
             this.aboutCOD3BR3AKRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainTabCtrl = new System.Windows.Forms.TabControl();
             this.tabEncrypt = new System.Windows.Forms.TabPage();
-            this.tabDecryption = new System.Windows.Forms.TabPage();
-            this.groupText = new System.Windows.Forms.GroupBox();
             this.groupFile = new System.Windows.Forms.GroupBox();
+            this.btnOpen = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnBrowse = new System.Windows.Forms.Button();
+            this.txtFileInput = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.groupText = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtRichOutput = new System.Windows.Forms.RichTextBox();
+            this.txtRichInput = new System.Windows.Forms.RichTextBox();
+            this.tabDecrypt = new System.Windows.Forms.TabPage();
             this.groupAlgorithmOptions = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtKey = new System.Windows.Forms.TextBox();
-            this.comboAlogrithms = new System.Windows.Forms.ComboBox();
             this.cbKeyRequired = new System.Windows.Forms.CheckBox();
+            this.comboAlogrithms = new System.Windows.Forms.ComboBox();
+            this.txtKey = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label4 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.labSignOut = new System.Windows.Forms.LinkLabel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtFileInput = new System.Windows.Forms.TextBox();
-            this.btnBrowse = new System.Windows.Forms.Button();
-            this.btnOpen = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtRichInput = new System.Windows.Forms.RichTextBox();
-            this.txtRichOutput = new System.Windows.Forms.RichTextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.mainMenuStrip.SuspendLayout();
             this.mainTabCtrl.SuspendLayout();
             this.tabEncrypt.SuspendLayout();
-            this.groupText.SuspendLayout();
             this.groupFile.SuspendLayout();
+            this.groupText.SuspendLayout();
             this.groupAlgorithmOptions.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,13 +99,13 @@
             // activityLogToolStripMenuItem
             // 
             this.activityLogToolStripMenuItem.Name = "activityLogToolStripMenuItem";
-            this.activityLogToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.activityLogToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.activityLogToolStripMenuItem.Text = "Activity Log";
             // 
             // errorLogToolStripMenuItem
             // 
             this.errorLogToolStripMenuItem.Name = "errorLogToolStripMenuItem";
-            this.errorLogToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.errorLogToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.errorLogToolStripMenuItem.Text = "Error Log";
             // 
             // optionsToolStripMenuItem
@@ -160,12 +161,13 @@
             // mainTabCtrl
             // 
             this.mainTabCtrl.Controls.Add(this.tabEncrypt);
-            this.mainTabCtrl.Controls.Add(this.tabDecryption);
+            this.mainTabCtrl.Controls.Add(this.tabDecrypt);
             this.mainTabCtrl.Location = new System.Drawing.Point(12, 41);
             this.mainTabCtrl.Name = "mainTabCtrl";
             this.mainTabCtrl.SelectedIndex = 0;
             this.mainTabCtrl.Size = new System.Drawing.Size(805, 342);
             this.mainTabCtrl.TabIndex = 1;
+            this.mainTabCtrl.SelectedIndexChanged += new System.EventHandler(this.mainTabCtrl_SelectedIndexChanged);
             // 
             // tabEncrypt
             // 
@@ -178,29 +180,6 @@
             this.tabEncrypt.Size = new System.Drawing.Size(797, 316);
             this.tabEncrypt.TabIndex = 1;
             this.tabEncrypt.Text = "Encryption";
-            // 
-            // tabDecryption
-            // 
-            this.tabDecryption.Location = new System.Drawing.Point(4, 22);
-            this.tabDecryption.Name = "tabDecryption";
-            this.tabDecryption.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDecryption.Size = new System.Drawing.Size(797, 316);
-            this.tabDecryption.TabIndex = 2;
-            this.tabDecryption.Text = "Decryption";
-            this.tabDecryption.UseVisualStyleBackColor = true;
-            // 
-            // groupText
-            // 
-            this.groupText.Controls.Add(this.label8);
-            this.groupText.Controls.Add(this.label7);
-            this.groupText.Controls.Add(this.txtRichOutput);
-            this.groupText.Controls.Add(this.txtRichInput);
-            this.groupText.Location = new System.Drawing.Point(21, 15);
-            this.groupText.Name = "groupText";
-            this.groupText.Size = new System.Drawing.Size(746, 160);
-            this.groupText.TabIndex = 0;
-            this.groupText.TabStop = false;
-            this.groupText.Text = "Text Input";
             // 
             // groupFile
             // 
@@ -216,145 +195,6 @@
             this.groupFile.TabIndex = 1;
             this.groupFile.TabStop = false;
             this.groupFile.Text = "File Input";
-            // 
-            // groupAlgorithmOptions
-            // 
-            this.groupAlgorithmOptions.BackColor = System.Drawing.Color.DarkGray;
-            this.groupAlgorithmOptions.Controls.Add(this.cbKeyRequired);
-            this.groupAlgorithmOptions.Controls.Add(this.comboAlogrithms);
-            this.groupAlgorithmOptions.Controls.Add(this.txtKey);
-            this.groupAlgorithmOptions.Controls.Add(this.label2);
-            this.groupAlgorithmOptions.Controls.Add(this.label1);
-            this.groupAlgorithmOptions.Location = new System.Drawing.Point(16, 398);
-            this.groupAlgorithmOptions.Name = "groupAlgorithmOptions";
-            this.groupAlgorithmOptions.Size = new System.Drawing.Size(797, 81);
-            this.groupAlgorithmOptions.TabIndex = 2;
-            this.groupAlgorithmOptions.TabStop = false;
-            this.groupAlgorithmOptions.Text = "Algorithm Options";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 41);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Alogrithm Selection: ";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(472, 41);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Custom Key:";
-            // 
-            // txtKey
-            // 
-            this.txtKey.Location = new System.Drawing.Point(553, 38);
-            this.txtKey.Name = "txtKey";
-            this.txtKey.Size = new System.Drawing.Size(171, 20);
-            this.txtKey.TabIndex = 2;
-            // 
-            // comboAlogrithms
-            // 
-            this.comboAlogrithms.FormattingEnabled = true;
-            this.comboAlogrithms.Location = new System.Drawing.Point(138, 38);
-            this.comboAlogrithms.Name = "comboAlogrithms";
-            this.comboAlogrithms.Size = new System.Drawing.Size(191, 21);
-            this.comboAlogrithms.TabIndex = 3;
-            // 
-            // cbKeyRequired
-            // 
-            this.cbKeyRequired.AutoSize = true;
-            this.cbKeyRequired.Location = new System.Drawing.Point(354, 42);
-            this.cbKeyRequired.Name = "cbKeyRequired";
-            this.cbKeyRequired.Size = new System.Drawing.Size(90, 17);
-            this.cbKeyRequired.TabIndex = 4;
-            this.cbKeyRequired.Text = "Key Required";
-            this.cbKeyRequired.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 517);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Progress: ";
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(103, 512);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(228, 23);
-            this.progressBar1.TabIndex = 4;
-            this.progressBar1.Value = 50;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 490);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(50, 13);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Duration:";
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(512, 500);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 32);
-            this.btnCancel.TabIndex = 7;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // btnOK
-            // 
-            this.btnOK.Location = new System.Drawing.Point(659, 500);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 32);
-            this.btnOK.TabIndex = 8;
-            this.btnOK.Text = "OK";
-            this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // labSignOut
-            // 
-            this.labSignOut.AutoSize = true;
-            this.labSignOut.Location = new System.Drawing.Point(780, 6);
-            this.labSignOut.Name = "labSignOut";
-            this.labSignOut.Size = new System.Drawing.Size(48, 13);
-            this.labSignOut.TabIndex = 9;
-            this.labSignOut.TabStop = true;
-            this.labSignOut.Text = "Sign Out";
-            this.labSignOut.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.labSignOut_LinkClicked);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(29, 36);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Input File：";
-            // 
-            // txtFileInput
-            // 
-            this.txtFileInput.Location = new System.Drawing.Point(100, 33);
-            this.txtFileInput.Name = "txtFileInput";
-            this.txtFileInput.ReadOnly = true;
-            this.txtFileInput.Size = new System.Drawing.Size(499, 20);
-            this.txtFileInput.TabIndex = 1;
-            // 
-            // btnBrowse
-            // 
-            this.btnBrowse.Location = new System.Drawing.Point(633, 31);
-            this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(85, 23);
-            this.btnBrowse.TabIndex = 2;
-            this.btnBrowse.Text = "Browse";
-            this.btnBrowse.UseVisualStyleBackColor = true;
             // 
             // btnOpen
             // 
@@ -382,21 +222,65 @@
             this.label6.TabIndex = 3;
             this.label6.Text = "Output File：";
             // 
-            // txtRichInput
+            // btnBrowse
             // 
-            this.txtRichInput.Location = new System.Drawing.Point(24, 42);
-            this.txtRichInput.Name = "txtRichInput";
-            this.txtRichInput.Size = new System.Drawing.Size(315, 103);
-            this.txtRichInput.TabIndex = 0;
-            this.txtRichInput.Text = "";
+            this.btnBrowse.Location = new System.Drawing.Point(633, 31);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(85, 23);
+            this.btnBrowse.TabIndex = 2;
+            this.btnBrowse.Text = "Browse";
+            this.btnBrowse.UseVisualStyleBackColor = true;
             // 
-            // txtRichOutput
+            // txtFileInput
             // 
-            this.txtRichOutput.Location = new System.Drawing.Point(409, 42);
-            this.txtRichOutput.Name = "txtRichOutput";
-            this.txtRichOutput.Size = new System.Drawing.Size(309, 103);
-            this.txtRichOutput.TabIndex = 1;
-            this.txtRichOutput.Text = "";
+            this.txtFileInput.Location = new System.Drawing.Point(100, 33);
+            this.txtFileInput.Name = "txtFileInput";
+            this.txtFileInput.ReadOnly = true;
+            this.txtFileInput.Size = new System.Drawing.Size(499, 20);
+            this.txtFileInput.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(29, 36);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Input File：";
+            // 
+            // groupText
+            // 
+            this.groupText.Controls.Add(this.button1);
+            this.groupText.Controls.Add(this.label8);
+            this.groupText.Controls.Add(this.label7);
+            this.groupText.Controls.Add(this.txtRichOutput);
+            this.groupText.Controls.Add(this.txtRichInput);
+            this.groupText.Location = new System.Drawing.Point(21, 15);
+            this.groupText.Name = "groupText";
+            this.groupText.Size = new System.Drawing.Size(746, 160);
+            this.groupText.TabIndex = 0;
+            this.groupText.TabStop = false;
+            this.groupText.Text = "Text Input";
+            // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(346, 122);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(57, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = ">>>";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(390, 20);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(42, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Output:";
             // 
             // label7
             // 
@@ -407,14 +291,144 @@
             this.label7.TabIndex = 2;
             this.label7.Text = "Input:";
             // 
-            // label8
+            // txtRichOutput
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(390, 20);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(42, 13);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Output:";
+            this.txtRichOutput.Location = new System.Drawing.Point(409, 42);
+            this.txtRichOutput.Name = "txtRichOutput";
+            this.txtRichOutput.Size = new System.Drawing.Size(309, 103);
+            this.txtRichOutput.TabIndex = 1;
+            this.txtRichOutput.Text = "";
+            // 
+            // txtRichInput
+            // 
+            this.txtRichInput.Location = new System.Drawing.Point(24, 42);
+            this.txtRichInput.Name = "txtRichInput";
+            this.txtRichInput.Size = new System.Drawing.Size(315, 103);
+            this.txtRichInput.TabIndex = 0;
+            this.txtRichInput.Text = "";
+            // 
+            // tabDecrypt
+            // 
+            this.tabDecrypt.BackColor = System.Drawing.Color.DarkGray;
+            this.tabDecrypt.Location = new System.Drawing.Point(4, 22);
+            this.tabDecrypt.Name = "tabDecrypt";
+            this.tabDecrypt.Padding = new System.Windows.Forms.Padding(3);
+            this.tabDecrypt.Size = new System.Drawing.Size(797, 316);
+            this.tabDecrypt.TabIndex = 2;
+            this.tabDecrypt.Text = "Decryption";
+            // 
+            // groupAlgorithmOptions
+            // 
+            this.groupAlgorithmOptions.BackColor = System.Drawing.Color.DarkGray;
+            this.groupAlgorithmOptions.Controls.Add(this.cbKeyRequired);
+            this.groupAlgorithmOptions.Controls.Add(this.comboAlogrithms);
+            this.groupAlgorithmOptions.Controls.Add(this.txtKey);
+            this.groupAlgorithmOptions.Controls.Add(this.label2);
+            this.groupAlgorithmOptions.Controls.Add(this.label1);
+            this.groupAlgorithmOptions.Location = new System.Drawing.Point(16, 398);
+            this.groupAlgorithmOptions.Name = "groupAlgorithmOptions";
+            this.groupAlgorithmOptions.Size = new System.Drawing.Size(797, 81);
+            this.groupAlgorithmOptions.TabIndex = 2;
+            this.groupAlgorithmOptions.TabStop = false;
+            this.groupAlgorithmOptions.Text = "Algorithm Options";
+            // 
+            // cbKeyRequired
+            // 
+            this.cbKeyRequired.AutoSize = true;
+            this.cbKeyRequired.Location = new System.Drawing.Point(354, 42);
+            this.cbKeyRequired.Name = "cbKeyRequired";
+            this.cbKeyRequired.Size = new System.Drawing.Size(90, 17);
+            this.cbKeyRequired.TabIndex = 4;
+            this.cbKeyRequired.Text = "Key Required";
+            this.cbKeyRequired.UseVisualStyleBackColor = true;
+            // 
+            // comboAlogrithms
+            // 
+            this.comboAlogrithms.FormattingEnabled = true;
+            this.comboAlogrithms.Location = new System.Drawing.Point(138, 38);
+            this.comboAlogrithms.Name = "comboAlogrithms";
+            this.comboAlogrithms.Size = new System.Drawing.Size(191, 21);
+            this.comboAlogrithms.TabIndex = 3;
+            // 
+            // txtKey
+            // 
+            this.txtKey.Location = new System.Drawing.Point(553, 38);
+            this.txtKey.Name = "txtKey";
+            this.txtKey.Size = new System.Drawing.Size(171, 20);
+            this.txtKey.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(472, 41);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Custom Key:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 41);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Alogrithm Selection: ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(28, 517);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Progress: ";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(95, 515);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(228, 23);
+            this.progressBar1.TabIndex = 4;
+            this.progressBar1.Value = 50;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(28, 490);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(50, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Duration:";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(511, 507);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 32);
+            this.btnCancel.TabIndex = 7;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // btnOK
+            // 
+            this.btnOK.Location = new System.Drawing.Point(665, 507);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 32);
+            this.btnOK.TabIndex = 8;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = true;
+            // 
+            // labSignOut
+            // 
+            this.labSignOut.AutoSize = true;
+            this.labSignOut.Location = new System.Drawing.Point(780, 6);
+            this.labSignOut.Name = "labSignOut";
+            this.labSignOut.Size = new System.Drawing.Size(48, 13);
+            this.labSignOut.TabIndex = 9;
+            this.labSignOut.TabStop = true;
+            this.labSignOut.Text = "Sign Out";
+            this.labSignOut.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.labSignOut_LinkClicked);
             // 
             // MainForm
             // 
@@ -432,16 +446,16 @@
             this.Controls.Add(this.mainMenuStrip);
             this.MainMenuStrip = this.mainMenuStrip;
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "COD3BR3AKR";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
             this.mainTabCtrl.ResumeLayout(false);
             this.tabEncrypt.ResumeLayout(false);
-            this.groupText.ResumeLayout(false);
-            this.groupText.PerformLayout();
             this.groupFile.ResumeLayout(false);
             this.groupFile.PerformLayout();
+            this.groupText.ResumeLayout(false);
+            this.groupText.PerformLayout();
             this.groupAlgorithmOptions.ResumeLayout(false);
             this.groupAlgorithmOptions.PerformLayout();
             this.ResumeLayout(false);
@@ -464,7 +478,7 @@
         private System.Windows.Forms.ToolStripMenuItem aboutCOD3BR3AKRToolStripMenuItem;
         private System.Windows.Forms.TabControl mainTabCtrl;
         private System.Windows.Forms.TabPage tabEncrypt;
-        private System.Windows.Forms.TabPage tabDecryption;
+        private System.Windows.Forms.TabPage tabDecrypt;
         private System.Windows.Forms.GroupBox groupFile;
         private System.Windows.Forms.GroupBox groupText;
         private System.Windows.Forms.GroupBox groupAlgorithmOptions;
@@ -489,5 +503,6 @@
         private System.Windows.Forms.RichTextBox txtRichInput;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button1;
     }
 }

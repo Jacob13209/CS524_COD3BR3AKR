@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InputHandler.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InputHandler.Designer.cs">
+      <DependentUpon>InputHandler.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,9 @@
     <Compile Include="UserManagementUI.Designer.cs">
       <DependentUpon>UserManagementUI.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="InputHandler.resx">
+      <DependentUpon>InputHandler.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
