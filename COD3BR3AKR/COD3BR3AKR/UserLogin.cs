@@ -35,6 +35,11 @@ namespace COD3BR3AKR
             {
                 string welcomeMsg = string.Format("Weclome to COD3BR3AKR! {0}", _username);
                 MessageBox.Show(welcomeMsg, "Information", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                this.Hide();
+
+                MainForm myMain = new MainForm();
+                myMain.TopMost = true;
+                myMain.Show();                
             }
             else
             {
