@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,12 +26,19 @@ namespace COD3BR3AKR
 
         private SystemMode _userMode;
 
+        private readonly string USER_INFO_CONFIG = Application.StartupPath + @"\users.xml";
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             // default settings to encryption
             this.mainTabCtrl.SelectedTab = this.tabEncrypt;
             this._userMode = SystemMode.eEncryption;
 
+            // make sure there is users.xml file that includes user account information
+            if (File.Exists(USER_INFO_CONFIG) == false)
+            {
+                XMLHelper.CreateXMLFile(USER_INFO_CONFIG, "Users");
+            }
         }
 
         private void labSignOut_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -44,14 +52,21 @@ namespace COD3BR3AKR
             this.groupFile.Parent = mainTabCtrl.SelectedTab;
             this.groupText.Parent = mainTabCtrl.SelectedTab;
 
-            if (mainTabCtrl.SelectedTab.Name == "tabEncrypt")
+            if (mainTabCtrl.SelectedTab == this.tabEncrypt)
             {
                 this._userMode = SystemMode.eEncryption;
             }
-            else if (mainTabCtrl.SelectedTab.Name == "tabDecrypt")
+            else if (mainTabCtrl.SelectedTab == this.tabDecrypt)
             {
                 this._userMode = SystemMode.eDecryption;
             }
+        }
+
+        private void userManagementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AccountManagement accountManagement = new AccountManagement(AccountManagement.UserManageMode.eManagement);
+
+            accountManagement.Show();
         }
     }
 }

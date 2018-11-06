@@ -35,7 +35,7 @@ namespace COD3BR3AKR
             {
                 string welcomeMsg = string.Format("Weclome to COD3BR3AKR! {0}", _username);
                 MessageBox.Show(welcomeMsg, "Information", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                this.Hide();
+                
 
                 MainForm myMain = new MainForm();
                 myMain.TopMost = true;
@@ -51,10 +51,9 @@ namespace COD3BR3AKR
 
         private void linLableForgetPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            UserManagementUI userManage = new UserManagementUI();
-            userManage.ManageMode = UserManagementUI.UserManageMode.ePasswordReset;
+            AccountManagement accountManage = new AccountManagement(AccountManagement.UserManageMode.eUserReset);
 
-            userManage.Show();
+            accountManage.Show();
         }
 
         private void resetUserInput()
@@ -81,10 +80,9 @@ namespace COD3BR3AKR
 
         private void linLabelSignUP_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            UserManagementUI userManage = new UserManagementUI();
-            userManage.ManageMode = UserManagementUI.UserManageMode.eNewUser;
+            AccountManagement accountManage = new AccountManagement(AccountManagement.UserManageMode.eUserRegistration);
 
-            userManage.Show();
+            accountManage.Show();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

@@ -8,6 +8,7 @@ namespace COD3BR3AKR
 {
     public class User
     {
+        public int UserId { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public bool UserActive { get; set; }
@@ -16,6 +17,7 @@ namespace COD3BR3AKR
 
         public User(string userName, string password)
         {
+
             this.UserName = userName;
             this.Password = password;
             this.UserActive = true;

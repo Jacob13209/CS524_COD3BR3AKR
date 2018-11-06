@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{517F1C91-DA35-42EF-8944-38549DD97574}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>COD3BR3AKR</RootNamespace>
     <AssemblyName>COD3BR3AKR</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,11 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InputHandler.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="AccountManagement.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InputHandler.Designer.cs">
-      <DependentUpon>InputHandler.cs</DependentUpon>
+    <Compile Include="AccountManagement.Designer.cs">
+      <DependentUpon>AccountManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -68,14 +71,9 @@
     <Compile Include="UserLogin.Designer.cs">
       <DependentUpon>UserLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserManagementUI.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UserManagementUI.Designer.cs">
-      <DependentUpon>UserManagementUI.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="InputHandler.resx">
-      <DependentUpon>InputHandler.cs</DependentUpon>
+    <Compile Include="XMLHelper.cs" />
+    <EmbeddedResource Include="AccountManagement.resx">
+      <DependentUpon>AccountManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -92,9 +90,6 @@
     </Compile>
     <EmbeddedResource Include="UserLogin.resx">
       <DependentUpon>UserLogin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserManagementUI.resx">
-      <DependentUpon>UserManagementUI.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

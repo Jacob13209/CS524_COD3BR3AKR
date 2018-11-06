@@ -64,12 +64,12 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btnLogin.Location = new System.Drawing.Point(209, 136);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(85, 30);
             this.btnLogin.TabIndex = 4;
-            this.btnLogin.Text = "LOGIN";
+            this.btnLogin.Text = "Sign In";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
@@ -77,7 +77,7 @@
             // 
             this.linLableForgetPass.AutoSize = true;
             this.linLableForgetPass.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linLableForgetPass.Location = new System.Drawing.Point(206, 191);
+            this.linLableForgetPass.Location = new System.Drawing.Point(193, 191);
             this.linLableForgetPass.Name = "linLableForgetPass";
             this.linLableForgetPass.Size = new System.Drawing.Size(134, 15);
             this.linLableForgetPass.TabIndex = 7;
@@ -88,18 +88,18 @@
             // labUserName
             // 
             this.labUserName.AutoSize = true;
-            this.labUserName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labUserName.Location = new System.Drawing.Point(60, 39);
+            this.labUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.labUserName.Location = new System.Drawing.Point(82, 43);
             this.labUserName.Name = "labUserName";
-            this.labUserName.Size = new System.Drawing.Size(105, 19);
+            this.labUserName.Size = new System.Drawing.Size(66, 13);
             this.labUserName.TabIndex = 0;
-            this.labUserName.Text = "USERNAME:";
+            this.labUserName.Text = "User Name: ";
             // 
             // linLabelSignUP
             // 
             this.linLabelSignUP.AutoSize = true;
             this.linLabelSignUP.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linLabelSignUP.Location = new System.Drawing.Point(61, 191);
+            this.linLabelSignUP.Location = new System.Drawing.Point(59, 191);
             this.linLabelSignUP.Name = "linLabelSignUP";
             this.linLabelSignUP.Size = new System.Drawing.Size(117, 15);
             this.linLabelSignUP.TabIndex = 6;
@@ -110,7 +110,7 @@
             // txtUserName
             // 
             this.txtUserName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUserName.Location = new System.Drawing.Point(180, 36);
+            this.txtUserName.Location = new System.Drawing.Point(169, 39);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(153, 26);
             this.txtUserName.TabIndex = 1;
@@ -118,29 +118,29 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btnCancel.Location = new System.Drawing.Point(75, 136);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(78, 30);
             this.btnCancel.TabIndex = 5;
-            this.btnCancel.Text = "CANCEL";
+            this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // labPassword
             // 
             this.labPassword.AutoSize = true;
-            this.labPassword.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labPassword.Location = new System.Drawing.Point(60, 82);
+            this.labPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.labPassword.Location = new System.Drawing.Point(92, 86);
             this.labPassword.Name = "labPassword";
-            this.labPassword.Size = new System.Drawing.Size(102, 19);
+            this.labPassword.Size = new System.Drawing.Size(56, 13);
             this.labPassword.TabIndex = 2;
-            this.labPassword.Text = "PASSWORD:";
+            this.labPassword.Text = "Password:";
             // 
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(180, 79);
+            this.txtPassword.Location = new System.Drawing.Point(169, 86);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(153, 26);
             this.txtPassword.TabIndex = 3;
