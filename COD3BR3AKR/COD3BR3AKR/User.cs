@@ -8,7 +8,7 @@ namespace COD3BR3AKR
 {
     public class User
     {
-        public int UserId { get; set; }
+        public int UserId { get; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public bool UserActive { get; set; }
@@ -17,17 +17,26 @@ namespace COD3BR3AKR
 
         public User(string userName, string password)
         {
-
+            this.UserId = UserManager.GetNewUserID();
             this.UserName = userName;
             this.Password = password;
             this.UserActive = true;
         }
+
+
 
     }
 
 
     public static class UserManager
     {
+        public static int GetNewUserID()
+        {
+            int userID = 0;
+
+            return userID;
+        }
+
         public static bool IsUserAuthPass(User currentUser)
         {
 
@@ -38,6 +47,11 @@ namespace COD3BR3AKR
         {
 
             return true;
+        }
+
+        public static void InactiveUser(string username)
+        {
+            throw new NotImplementedException();
         }
 
         public static bool AddNewUser(User userToBeAdded)
@@ -64,5 +78,6 @@ namespace COD3BR3AKR
 
             return userList;
         }
+        
     }
 }

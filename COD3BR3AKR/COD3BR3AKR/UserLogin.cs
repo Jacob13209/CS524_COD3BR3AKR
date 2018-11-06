@@ -12,9 +12,12 @@ namespace COD3BR3AKR
 {
     public partial class UserLogin : Form
     {
+        private const int MAX_ATTEMPTS_ALLOWED = 10;
+
         private string _username = string.Empty;
         private string _password = string.Empty;
-        
+        private int _numberOfFailures = 0;
+
         public UserLogin()
         {
             InitializeComponent();
@@ -43,7 +46,13 @@ namespace COD3BR3AKR
             }
             else
             {
+                if (this._numberOfFailures >= MAX_ATTEMPTS_ALLOWED)
+                {
+                    UserManager.InactiveUser(this._username);
+                }
+
                 resetUserInput();
+                this._numberOfFailures++;                
                 showError("The username or password is incorrect! Try again.");
             }                        
         }
