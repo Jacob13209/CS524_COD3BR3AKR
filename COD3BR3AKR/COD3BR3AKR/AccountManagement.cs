@@ -37,21 +37,12 @@ namespace COD3BR3AKR
             switch (this._manageMode)
             {
                 case UserManageMode.eUserRegistration:                    
-                    ((Control)this.tabRegistration).Enabled = true;
-                    ((Control)this.tabReset).Enabled = false;
-                    ((Control)this.tabUserManagement).Enabled = false;
                     this.tabManagement.SelectedTab = this.tabRegistration;
                     break;
                 case UserManageMode.eUserReset:                    
-                    ((Control)this.tabRegistration).Enabled = true;
-                    ((Control)this.tabReset).Enabled = true;
-                    ((Control)this.tabUserManagement).Enabled = false;
                     this.tabManagement.SelectedTab = this.tabReset;
                     break;
                 case UserManageMode.eManagement:                   
-                    ((Control)this.tabRegistration).Enabled = true;
-                    ((Control)this.tabReset).Enabled = true;
-                    ((Control)this.tabUserManagement).Enabled = true;
                     this.tabManagement.SelectedTab = this.tabUserManagement;
                     break;
             }
@@ -83,16 +74,9 @@ namespace COD3BR3AKR
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            User userAccount = new User();
-
             if (!string.IsNullOrEmpty(this._userName))
             {
-                if (this._password == this._confirmedPassword)
-                {
-                    userAccount.UserName = this._userName;
-                    userAccount.Password = this._password;
-                }
-                else
+                if (this._password != this._confirmedPassword)
                 {
                     // passwords not match
                     MessageBox.Show("Password and Confirmed Password does not match! \nPlease make sure type password carefully.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -114,10 +98,10 @@ namespace COD3BR3AKR
             {
                 case UserManageMode.eUserRegistration:
                 {
-                    if (UserManager.IsUserExist(userAccount.UserName) == false)
+                    if (UserManager.IsUserExist(this._userName) == false)
                     {
                         // add new user into system
-                        if (UserManager.AddNewUser(userAccount) == true)
+                        if (UserManager.AddNewUser(this._userName, this._password) == true)
                         {
                             MessageBox.Show("Registeration Successful! \nPlease login with new Username and Password.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                             this.Close();
@@ -139,9 +123,9 @@ namespace COD3BR3AKR
                     
                 case UserManageMode.eUserReset:
                 {
-                    if (UserManager.IsUserExist(userAccount.UserName) == true)
+                    if (UserManager.IsUserExist(this._userName) == true)
                     {
-                        if (UserManager.UpdateUser(userAccount) == true)
+                        if (UserManager.ResetUser(this._userName, this._password) == true)
                         {
                             MessageBox.Show("Password Reset Successful! \nPlease login with new password", "Information", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                             this.Close();
@@ -190,12 +174,12 @@ namespace COD3BR3AKR
                 e.Cancel = true;
                 showWarning = true;
             }
-            else if (e.TabPage == this.tabReset && this._manageMode == UserManageMode.eUserRegistration)
+            else if (e.TabPage == this.tabReset && this._manageMode != UserManageMode.eUserReset)
             {
                 e.Cancel = true;
                 showWarning = true;
             }
-            else if (e.TabPage == this.tabRegistration && this._manageMode == UserManageMode.eUserReset)
+            else if (e.TabPage == this.tabRegistration && this._manageMode != UserManageMode.eUserRegistration)
             {
                 e.Cancel = true;
                 showWarning = true;

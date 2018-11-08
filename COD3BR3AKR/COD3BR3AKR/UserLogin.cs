@@ -32,9 +32,7 @@ namespace COD3BR3AKR
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            User currentUser = new User(_username, _password);
-
-            if (UserManager.IsUserAuthPass(currentUser) == true)
+            if (UserManager.IsUserAuthPass(_username, _password) == true)
             {
                 string welcomeMsg = string.Format("Weclome to COD3BR3AKR! {0}", _username);
                 MessageBox.Show(welcomeMsg, "Information", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
