@@ -33,7 +33,6 @@
             this.activityLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.errorLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.userOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,7 +42,7 @@
             this.tabEncrypt = new System.Windows.Forms.TabPage();
             this.groupFile = new System.Windows.Forms.GroupBox();
             this.btnOpen = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtFileOutput = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.txtFileInput = new System.Windows.Forms.TextBox();
@@ -62,11 +61,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label4 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.labSignOut = new System.Windows.Forms.LinkLabel();
+            this.labStatus = new System.Windows.Forms.Label();
+            this.btnReset = new System.Windows.Forms.Button();
             this.mainMenuStrip.SuspendLayout();
             this.mainTabCtrl.SuspendLayout();
             this.tabEncrypt.SuspendLayout();
@@ -111,30 +111,23 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.userOptionsToolStripMenuItem,
             this.advancedToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
-            // 
-            // userOptionsToolStripMenuItem
-            // 
-            this.userOptionsToolStripMenuItem.Name = "userOptionsToolStripMenuItem";
-            this.userOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.userOptionsToolStripMenuItem.Text = "User Options";
             // 
             // advancedToolStripMenuItem
             // 
             this.advancedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.userManagementToolStripMenuItem});
             this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
-            this.advancedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.advancedToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.advancedToolStripMenuItem.Text = "Advanced";
             // 
             // userManagementToolStripMenuItem
             // 
             this.userManagementToolStripMenuItem.Name = "userManagementToolStripMenuItem";
-            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.userManagementToolStripMenuItem.Text = "User Management";
             this.userManagementToolStripMenuItem.Click += new System.EventHandler(this.userManagementToolStripMenuItem_Click);
             // 
@@ -185,7 +178,7 @@
             // groupFile
             // 
             this.groupFile.Controls.Add(this.btnOpen);
-            this.groupFile.Controls.Add(this.textBox2);
+            this.groupFile.Controls.Add(this.txtFileOutput);
             this.groupFile.Controls.Add(this.label6);
             this.groupFile.Controls.Add(this.btnBrowse);
             this.groupFile.Controls.Add(this.txtFileInput);
@@ -203,16 +196,17 @@
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(85, 23);
             this.btnOpen.TabIndex = 5;
-            this.btnOpen.Text = "Open";
+            this.btnOpen.Text = "Browse";
             this.btnOpen.UseVisualStyleBackColor = true;
+            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
-            // textBox2
+            // txtFileOutput
             // 
-            this.textBox2.Location = new System.Drawing.Point(100, 71);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(499, 20);
-            this.textBox2.TabIndex = 4;
+            this.txtFileOutput.Location = new System.Drawing.Point(100, 71);
+            this.txtFileOutput.Name = "txtFileOutput";
+            this.txtFileOutput.ReadOnly = true;
+            this.txtFileOutput.Size = new System.Drawing.Size(499, 20);
+            this.txtFileOutput.TabIndex = 4;
             // 
             // label6
             // 
@@ -231,6 +225,7 @@
             this.btnBrowse.TabIndex = 2;
             this.btnBrowse.Text = "Browse";
             this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // txtFileInput
             // 
@@ -296,6 +291,7 @@
             // 
             this.txtRichOutput.Location = new System.Drawing.Point(409, 42);
             this.txtRichOutput.Name = "txtRichOutput";
+            this.txtRichOutput.ReadOnly = true;
             this.txtRichOutput.Size = new System.Drawing.Size(309, 103);
             this.txtRichOutput.TabIndex = 1;
             this.txtRichOutput.Text = "";
@@ -307,6 +303,9 @@
             this.txtRichInput.Size = new System.Drawing.Size(315, 103);
             this.txtRichInput.TabIndex = 0;
             this.txtRichInput.Text = "";
+            this.txtRichInput.TextChanged += new System.EventHandler(this.txtRichInput_TextChanged);
+            this.txtRichInput.Enter += new System.EventHandler(this.txtRichInput_Enter);
+            this.txtRichInput.Leave += new System.EventHandler(this.txtRichInput_Leave);
             // 
             // tabDecrypt
             // 
@@ -350,6 +349,7 @@
             this.comboAlogrithms.Name = "comboAlogrithms";
             this.comboAlogrithms.Size = new System.Drawing.Size(191, 21);
             this.comboAlogrithms.TabIndex = 3;
+            this.comboAlogrithms.SelectedIndexChanged += new System.EventHandler(this.comboAlogrithms_SelectedIndexChanged);
             // 
             // txtKey
             // 
@@ -379,19 +379,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 517);
+            this.label3.Location = new System.Drawing.Point(34, 517);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 13);
+            this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Progress: ";
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(95, 515);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(228, 23);
-            this.progressBar1.TabIndex = 4;
-            this.progressBar1.Value = 50;
+            this.label3.Text = "Status: ";
             // 
             // label4
             // 
@@ -404,7 +396,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(511, 507);
+            this.btnCancel.Location = new System.Drawing.Point(590, 507);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 32);
             this.btnCancel.TabIndex = 7;
@@ -413,12 +405,13 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(665, 507);
+            this.btnOK.Location = new System.Drawing.Point(708, 507);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 32);
             this.btnOK.TabIndex = 8;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // labSignOut
             // 
@@ -431,16 +424,35 @@
             this.labSignOut.Text = "Sign Out";
             this.labSignOut.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.labSignOut_LinkClicked);
             // 
+            // labStatus
+            // 
+            this.labStatus.AutoSize = true;
+            this.labStatus.Location = new System.Drawing.Point(83, 517);
+            this.labStatus.Name = "labStatus";
+            this.labStatus.Size = new System.Drawing.Size(38, 13);
+            this.labStatus.TabIndex = 10;
+            this.labStatus.Text = "Ready";
+            // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(470, 507);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 32);
+            this.btnReset.TabIndex = 11;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(847, 558);
+            this.Controls.Add(this.btnReset);
+            this.Controls.Add(this.labStatus);
             this.Controls.Add(this.labSignOut);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupAlgorithmOptions);
             this.Controls.Add(this.mainTabCtrl);
@@ -469,7 +481,6 @@
         private System.Windows.Forms.MenuStrip mainMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem userOptionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem advancedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem userManagementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
@@ -489,7 +500,6 @@
         private System.Windows.Forms.ComboBox comboAlogrithms;
         private System.Windows.Forms.TextBox txtKey;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
@@ -498,12 +508,14 @@
         private System.Windows.Forms.TextBox txtFileInput;
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.Button btnOpen;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtFileOutput;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.RichTextBox txtRichOutput;
         private System.Windows.Forms.RichTextBox txtRichInput;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label labStatus;
+        private System.Windows.Forms.Button btnReset;
     }
 }

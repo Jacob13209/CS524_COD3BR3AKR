@@ -168,34 +168,5 @@ namespace COD3BR3AKR
             }
         }
 
-        public static void CreateXMLFile(string filePath, string rootNode)
-        {
-            XmlDocument doc = new XmlDocument();
-            XmlNode docNode = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
-            doc.AppendChild(docNode);
-
-            XmlNode root = doc.CreateElement(rootNode);
-            doc.AppendChild(root);
-            doc.Save(filePath);
-        }
-
-        public static void XMLMTest()
-        {
-            string path = "Person.xml";
-            //XMLHelper.Read(path, "PersonF/person[@Name='Person2']", "Name");
-
-            XMLHelper.Insert(path, "PersonF", "Num", "ID", "88");
-            //XMLHelper.Insert(path, "PersonF", "Num", "", "88");
-            //XMLHelper.Insert(path, "PersonF", "", "ID", "88");
-
-            //XMLHelper.Update(path, "PersonF/person[@Name='Person3']", "Num", "888");
-            //XMLHelper.Update(path, "PersonF/person[@Name='Person3']/ID", "Num", "999");
-            //XMLHelper.Update(path, "PersonF/person[@Name='Person3']/ID", "", "888");
-
-            //XMLHelper.Delete(path, "PersonF/person[@Name='Person3']/ID", "Num");
-
-            //XMLHelper.Delete(path, "PersonF/person[@Name='Person3']/ID", "");
-
-        }
     }
 }

@@ -32,14 +32,17 @@ namespace COD3BR3AKR
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (UserManager.IsUserAuthPass(_username, _password) == true)
+            if (UserManager.IsUserExist(_username) == true && UserManager.IsUserActive(_username) == false)
+            {
+                showError("Your User Account is INACTIVE! Try resetting Password.");
+            }
+            else if (UserManager.IsUserAuthPass(_username, _password) == true)
             {
                 string welcomeMsg = string.Format("Weclome to COD3BR3AKR! {0}", _username);
                 MessageBox.Show(welcomeMsg, "Information", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 
 
                 MainForm myMain = new MainForm();
-                myMain.TopMost = true;
                 myMain.Show();                
             }
             else
@@ -50,8 +53,8 @@ namespace COD3BR3AKR
                 }
 
                 resetUserInput();
-                this._numberOfFailures++;                
-                showError("The username or password is incorrect! Try again.");
+                this._numberOfFailures++;
+                showError("The username or password is incorrect! Try again.");               
             }                        
         }
 

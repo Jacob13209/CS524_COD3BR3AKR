@@ -30,44 +30,41 @@
         {
             this.tabManagement = new System.Windows.Forms.TabControl();
             this.tabRegistration = new System.Windows.Forms.TabPage();
-            this.tabReset = new System.Windows.Forms.TabPage();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.tabUserManagement = new System.Windows.Forms.TabPage();
             this.groupUserRegReset = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtConfirmPass = new System.Windows.Forms.TextBox();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.userID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.tabReset = new System.Windows.Forms.TabPage();
+            this.tabUserManagement = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.info_Status_combo = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.info_name_txt = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.info_pass_txt = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.info_ID_txt = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.allUserView = new System.Windows.Forms.DataGridView();
             this.tabManagement.SuspendLayout();
             this.tabRegistration.SuspendLayout();
-            this.tabUserManagement.SuspendLayout();
             this.groupUserRegReset.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.tabUserManagement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.allUserView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabManagement
@@ -94,53 +91,6 @@
             this.tabRegistration.TabIndex = 0;
             this.tabRegistration.Text = "User Registration";
             // 
-            // tabReset
-            // 
-            this.tabReset.BackColor = System.Drawing.Color.DarkGray;
-            this.tabReset.Location = new System.Drawing.Point(4, 22);
-            this.tabReset.Name = "tabReset";
-            this.tabReset.Padding = new System.Windows.Forms.Padding(3);
-            this.tabReset.Size = new System.Drawing.Size(519, 327);
-            this.tabReset.TabIndex = 1;
-            this.tabReset.Text = "User Reset";
-            // 
-            // btnOK
-            // 
-            this.btnOK.Location = new System.Drawing.Point(226, 206);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 40);
-            this.btnOK.TabIndex = 1;
-            this.btnOK.Text = "Sign Up";
-            this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(76, 206);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 40);
-            this.btnCancel.TabIndex = 2;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // tabUserManagement
-            // 
-            this.tabUserManagement.BackColor = System.Drawing.Color.DarkGray;
-            this.tabUserManagement.Controls.Add(this.pictureBox1);
-            this.tabUserManagement.Controls.Add(this.btnAdd);
-            this.tabUserManagement.Controls.Add(this.btnDelete);
-            this.tabUserManagement.Controls.Add(this.btnUpdate);
-            this.tabUserManagement.Controls.Add(this.btnRefresh);
-            this.tabUserManagement.Controls.Add(this.groupBox2);
-            this.tabUserManagement.Controls.Add(this.groupBox1);
-            this.tabUserManagement.Location = new System.Drawing.Point(4, 22);
-            this.tabUserManagement.Name = "tabUserManagement";
-            this.tabUserManagement.Padding = new System.Windows.Forms.Padding(3);
-            this.tabUserManagement.Size = new System.Drawing.Size(519, 327);
-            this.tabUserManagement.TabIndex = 2;
-            this.tabUserManagement.Text = "User Management";
-            // 
             // groupUserRegReset
             // 
             this.groupUserRegReset.Controls.Add(this.label3);
@@ -157,6 +107,53 @@
             this.groupUserRegReset.TabIndex = 3;
             this.groupUserRegReset.TabStop = false;
             this.groupUserRegReset.Text = "New User";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(57, 161);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(94, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Confirm Password:";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(76, 206);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 40);
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(95, 106);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Password:";
+            // 
+            // btnOK
+            // 
+            this.btnOK.Location = new System.Drawing.Point(226, 206);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 40);
+            this.btnOK.TabIndex = 1;
+            this.btnOK.Text = "Sign Up";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(88, 57);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "User Name:";
             // 
             // txtConfirmPass
             // 
@@ -185,140 +182,32 @@
             this.txtPassword.TabIndex = 7;
             this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
-            // label1
+            // tabReset
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(88, 57);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 13);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "User Name:";
+            this.tabReset.BackColor = System.Drawing.Color.DarkGray;
+            this.tabReset.Location = new System.Drawing.Point(4, 22);
+            this.tabReset.Name = "tabReset";
+            this.tabReset.Padding = new System.Windows.Forms.Padding(3);
+            this.tabReset.Size = new System.Drawing.Size(519, 327);
+            this.tabReset.TabIndex = 1;
+            this.tabReset.Text = "User Reset";
             // 
-            // label2
+            // tabUserManagement
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(95, 106);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Password:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(57, 161);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Confirm Password:";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.userID,
-            this.userName,
-            this.userStatus});
-            this.dataGridView1.Location = new System.Drawing.Point(37, 24);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(343, 159);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // userID
-            // 
-            this.userID.HeaderText = "User ID";
-            this.userID.Name = "userID";
-            // 
-            // userName
-            // 
-            this.userName.HeaderText = "User Name";
-            this.userName.Name = "userName";
-            // 
-            // userStatus
-            // 
-            this.userStatus.HeaderText = "User Status";
-            this.userStatus.Name = "userStatus";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Location = new System.Drawing.Point(10, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(416, 196);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "All Users";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.comboBox1);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.textBox3);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Location = new System.Drawing.Point(10, 214);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(416, 100);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "User Information";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 29);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "User ID: ";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(83, 26);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Location = new System.Drawing.Point(438, 22);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(75, 30);
-            this.btnRefresh.TabIndex = 3;
-            this.btnRefresh.Text = "Refresh";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(438, 68);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 30);
-            this.btnUpdate.TabIndex = 4;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(438, 118);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 30);
-            this.btnDelete.TabIndex = 5;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(438, 169);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 30);
-            this.btnAdd.TabIndex = 6;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
+            this.tabUserManagement.BackColor = System.Drawing.Color.DarkGray;
+            this.tabUserManagement.Controls.Add(this.pictureBox1);
+            this.tabUserManagement.Controls.Add(this.btnAdd);
+            this.tabUserManagement.Controls.Add(this.btnDelete);
+            this.tabUserManagement.Controls.Add(this.btnUpdate);
+            this.tabUserManagement.Controls.Add(this.btnRefresh);
+            this.tabUserManagement.Controls.Add(this.groupBox2);
+            this.tabUserManagement.Controls.Add(this.groupBox1);
+            this.tabUserManagement.Location = new System.Drawing.Point(4, 22);
+            this.tabUserManagement.Name = "tabUserManagement";
+            this.tabUserManagement.Padding = new System.Windows.Forms.Padding(3);
+            this.tabUserManagement.Size = new System.Drawing.Size(519, 327);
+            this.tabUserManagement.TabIndex = 2;
+            this.tabUserManagement.Text = "User Management";
             // 
             // pictureBox1
             // 
@@ -330,37 +219,74 @@
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
-            // textBox2
+            // btnAdd
             // 
-            this.textBox2.Location = new System.Drawing.Point(280, 60);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 3;
+            this.btnAdd.Location = new System.Drawing.Point(438, 74);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 30);
+            this.btnAdd.TabIndex = 6;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // label5
+            // btnDelete
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(218, 64);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Password:";
+            this.btnDelete.Location = new System.Drawing.Point(438, 177);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 30);
+            this.btnDelete.TabIndex = 5;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // textBox3
+            // btnUpdate
             // 
-            this.textBox3.Location = new System.Drawing.Point(280, 25);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 5;
+            this.btnUpdate.Location = new System.Drawing.Point(438, 126);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(75, 30);
+            this.btnUpdate.TabIndex = 4;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // label6
+            // btnRefresh
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(211, 28);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 13);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "User Name:";
+            this.btnRefresh.Location = new System.Drawing.Point(438, 22);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 30);
+            this.btnRefresh.TabIndex = 3;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.info_Status_combo);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.info_name_txt);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.info_pass_txt);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.info_ID_txt);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Location = new System.Drawing.Point(10, 214);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(416, 100);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "User Information";
+            // 
+            // info_Status_combo
+            // 
+            this.info_Status_combo.FormattingEnabled = true;
+            this.info_Status_combo.Items.AddRange(new object[] {
+            "Active",
+            "InActive"});
+            this.info_Status_combo.Location = new System.Drawing.Point(83, 60);
+            this.info_Status_combo.Name = "info_Status_combo";
+            this.info_Status_combo.Size = new System.Drawing.Size(100, 21);
+            this.info_Status_combo.TabIndex = 7;
+            this.info_Status_combo.SelectedIndexChanged += new System.EventHandler(this.info_Status_combo_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -371,16 +297,80 @@
             this.label7.TabIndex = 6;
             this.label7.Text = "User Status:";
             // 
-            // comboBox1
+            // info_name_txt
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Active",
-            "InActive"});
-            this.comboBox1.Location = new System.Drawing.Point(83, 60);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(100, 21);
-            this.comboBox1.TabIndex = 7;
+            this.info_name_txt.Location = new System.Drawing.Point(280, 25);
+            this.info_name_txt.Name = "info_name_txt";
+            this.info_name_txt.Size = new System.Drawing.Size(100, 20);
+            this.info_name_txt.TabIndex = 5;
+            this.info_name_txt.TextChanged += new System.EventHandler(this.info_name_txt_TextChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(211, 28);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(63, 13);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "User Name:";
+            // 
+            // info_pass_txt
+            // 
+            this.info_pass_txt.Location = new System.Drawing.Point(280, 60);
+            this.info_pass_txt.Name = "info_pass_txt";
+            this.info_pass_txt.Size = new System.Drawing.Size(100, 20);
+            this.info_pass_txt.TabIndex = 3;
+            this.info_pass_txt.TextChanged += new System.EventHandler(this.info_pass_txt_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(218, 64);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Password:";
+            // 
+            // info_ID_txt
+            // 
+            this.info_ID_txt.Location = new System.Drawing.Point(83, 26);
+            this.info_ID_txt.Name = "info_ID_txt";
+            this.info_ID_txt.ReadOnly = true;
+            this.info_ID_txt.Size = new System.Drawing.Size(100, 20);
+            this.info_ID_txt.TabIndex = 1;
+            this.info_ID_txt.TextChanged += new System.EventHandler(this.info_ID_txt_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(28, 29);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(49, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "User ID: ";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.allUserView);
+            this.groupBox1.Location = new System.Drawing.Point(10, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(416, 196);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "All Users";
+            // 
+            // allUserView
+            // 
+            this.allUserView.AllowUserToOrderColumns = true;
+            this.allUserView.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.allUserView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.allUserView.Location = new System.Drawing.Point(25, 23);
+            this.allUserView.Name = "allUserView";
+            this.allUserView.ReadOnly = true;
+            this.allUserView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.allUserView.Size = new System.Drawing.Size(365, 159);
+            this.allUserView.TabIndex = 0;
+            this.allUserView.SelectionChanged += new System.EventHandler(this.allUserView_SelectionChanged);
             // 
             // AccountManagement
             // 
@@ -390,17 +380,18 @@
             this.Controls.Add(this.tabManagement);
             this.Name = "AccountManagement";
             this.Text = "COD3BR3AKR - AccountManagement";
+            this.Load += new System.EventHandler(this.AccountManagement_Load);
             this.Shown += new System.EventHandler(this.AccountManagement_Shown);
             this.tabManagement.ResumeLayout(false);
             this.tabRegistration.ResumeLayout(false);
-            this.tabUserManagement.ResumeLayout(false);
             this.groupUserRegReset.ResumeLayout(false);
             this.groupUserRegReset.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
+            this.tabUserManagement.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.allUserView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -420,24 +411,21 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn userID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn userName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn userStatus;
+        private System.Windows.Forms.DataGridView allUserView;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox info_ID_txt;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox info_name_txt;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox info_pass_txt;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox info_Status_combo;
     }
 }
