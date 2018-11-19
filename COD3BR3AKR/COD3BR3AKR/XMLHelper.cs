@@ -7,20 +7,24 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 
+/// <summary>
+/// From: http://www.cnblogs.com/linlf03/archive/2011/12/15/2288903.html
+/// </summary>
 namespace COD3BR3AKR
 {
     public class XMLHelper
     {
 
         /// <summary>
-        /// 读取节点中某一个属性的值。如果attribute为空，则返回整个节点的InnerText，否则返回具体attribute的值
+        /// Read the attribute value of a node. 
+        /// If the attribute is empty, return the entire InnerText of that node，elsewise only return the value for that attribute
         /// </summary>
-        /// <param name="path">xml文件路径</param>
-        /// <param name="node">节点</param>
-        /// <param name="attribute">节点中的属性</param>
-        /// <returns>如果attribute为空，则返回整个节点的InnerText，否则返回具体attribute的值</returns>
-        /// 使用实例: XMLHelper.Read(path, "PersonF/person[@Name='Person2']", "");
-        ///  XMLHelper.Read(path, "PersonF/person[@Name='Person2']", "Name");
+        /// <param name="path">xml file path</param>
+        /// <param name="node">XML Node</param>
+        /// <param name="attribute">Attribute of the node</param>
+        /// <returns>The entire InnerText of that node，elsewise only return the value for that attribute</returns>
+        /// Example: XMLHelper.Read(path, "PersonF/person[@Name='Person2']", "");
+        ///          XMLHelper.Read(path, "PersonF/person[@Name='Person2']", "Name");
         public static string Read(string path, string node, string attribute)
         {
             if (File.Exists(path) == false)
@@ -42,18 +46,17 @@ namespace COD3BR3AKR
             return value;
         }
 
-
         /// <summary>
-        /// 向节点中增加节点元素，属性
+        /// Add new element and attribute to the node
         /// </summary>
-        /// <param name="path">路径</param>
-        /// <param name="node">要操作的节点</param>
-        /// <param name="element">要增加的节点元素，可空可不空。非空时插入新的元素，否则插入该元素的属性</param>
-        /// <param name="attribute">要增加的节点属性，可空可不空。非空时插入元素值，否则插入元素值</param>
-        /// <param name="value">要增加的节点值</param>
-        /// 使用实例：XMLHelper.Insert(path, "PersonF/person[@Name='Person2']","Num", "ID", "88");
-        /// XMLHelper.Insert(path, "PersonF/person[@Name='Person2']","Num", "", "88");
-        /// XMLHelper.Insert(path, "PersonF/person[@Name='Person2']", "", "ID", "88");
+        /// <param name="path">Path</param>
+        /// <param name="node">Node to be modified</param>
+        /// <param name="element">Element to be added, can be empty or null empty. As new element if it is null empty, otherwise as attribute</param>
+        /// <param name="attribute">Attribute to be added, can be empty or null empty. As new attribute if it is null empty, otherwise as element</param>
+        /// <param name="value">Value to be added</param>
+        /// Example：XMLHelper.Insert(path, "PersonF/person[@Name='Person2']","Num", "ID", "88");
+        ///          XMLHelper.Insert(path, "PersonF/person[@Name='Person2']","Num", "", "88");
+        ///          XMLHelper.Insert(path, "PersonF/person[@Name='Person2']", "", "ID", "88");
         public static bool Insert(string path, string node, string element, string attribute, string value)
         {
             if (File.Exists(path) == false)
@@ -62,14 +65,13 @@ namespace COD3BR3AKR
             }
             try
             {
-                Console.WriteLine("This is Insert");
                 XmlDocument doc = new XmlDocument();
                 doc.Load(path);
                 XmlNode xn = doc.SelectSingleNode(node);
-                //如果element，则增加该属性 
+
                 if (string.IsNullOrEmpty(element))
                 {
-                    //如果attribute不为空，增加该属性
+                    //attribute is null empty，add as new attribute
                     if (!string.IsNullOrEmpty(attribute))
                     {
 
@@ -78,7 +80,7 @@ namespace COD3BR3AKR
                         xe.SetAttribute(attribute, value);
                     }
                 }
-                else //如果element不为空，则preson下增加节点   
+                else //element is null empty，add new child element   
                 {
                     XmlElement xe = doc.CreateElement(element);
                     if (string.IsNullOrEmpty(attribute))
@@ -100,14 +102,14 @@ namespace COD3BR3AKR
         }
 
         /// <summary>
-        /// 修改节点值
+        /// Modify the value of a node
         /// </summary>
-        /// <param name="path">路径</param>
-        /// <param name="node">要修改的节点</param>
-        /// <param name="attribute">属性名，非空时修改节点的属性值，否则修改节点值</param>
-        /// <param name="value">属性值</param>
-        /// 实例 XMLHelper.Update(path, "PersonF/person[@Name='Person3']/ID", "", "888");
-        /// XMLHelper.Update(path, "PersonF/person[@Name='Person3']/ID", "Num", "999"); 
+        /// <param name="path">XML file path</param>
+        /// <param name="node">Node to be modified/param>
+        /// <param name="attribute">attribute name，update the attribute value if null empty, otherwise update the node value</param>
+        /// <param name="value">attribute value</param>
+        /// Example: XMLHelper.Update(path, "PersonF/person[@Name='Person3']/ID", "", "888");
+        ///          XMLHelper.Update(path, "PersonF/person[@Name='Person3']/ID", "Num", "999"); 
         public static bool Update(string path, string node, string attribute, string value)
         {
             if (File.Exists(path) == false)
@@ -121,9 +123,9 @@ namespace COD3BR3AKR
                 XmlNode xn = doc.SelectSingleNode(node);
                 XmlElement xe = (XmlElement)xn;
                 if (string.IsNullOrEmpty(attribute))
-                    xe.InnerText = value;//原<ID>2</ID> 改变:<ID>888</ID>  XMLHelper.Update(path, "PersonF/person[@Name='Person3']/ID", "", "888");
+                    xe.InnerText = value;//Orginal:<ID>2</ID> To be updated:<ID>888</ID>  XMLHelper.Update(path, "PersonF/person[@Name='Person3']/ID", "", "888");
                 else
-                    xe.SetAttribute(attribute, value); //原<ID Num="3">888</ID> 改变<ID Num="999">888</ID>    XMLHelper.Update(path, "PersonF/person[@Name='Person3']/ID", "Num", "999"); 
+                    xe.SetAttribute(attribute, value); //Orginal: <ID Num="3">888</ID> To be updated:<ID Num="999">888</ID>    XMLHelper.Update(path, "PersonF/person[@Name='Person3']/ID", "Num", "999"); 
                 doc.Save(path);
                 return true;
             }
@@ -135,13 +137,13 @@ namespace COD3BR3AKR
         }
 
         /// <summary>
-        /// 删除数据
+        /// Delete node
         /// </summary>
-        /// <param name="path">路径</param>
-        /// <param name="node">要删除的节点</param>
-        /// <param name="attribute">属性，为空则删除整个节点，不为空则删除节点中的属性</param>
-        /// 实例：XMLHelper.Delete(path, "PersonF/person[@Name='Person3']/ID", "");
-        /// XMLHelper.Delete(path, "PersonF/person[@Name='Person3']/ID", "Num");
+        /// <param name="path">XML Path</param>
+        /// <param name="node">Node to be deleted</param>
+        /// <param name="attribute">Attribute name，delete entire node on empty, otherwise delete the attribute</param>
+        /// Example：XMLHelper.Delete(path, "PersonF/person[@Name='Person3']/ID", "");
+        ///          XMLHelper.Delete(path, "PersonF/person[@Name='Person3']/ID", "Num");
         public static bool Delete(string path, string node, string attribute)
         {
             if (File.Exists(path) == false)
@@ -155,9 +157,13 @@ namespace COD3BR3AKR
                 XmlNode xn = doc.SelectSingleNode(node);
                 XmlElement xe = (XmlElement)xn;
                 if (string.IsNullOrEmpty(attribute))
-                    xn.ParentNode.RemoveChild(xn);// <ID Num="999">888</ID>的整个节点将被移除  XMLHelper.Delete(path, "PersonF/person[@Name='Person3']/ID", "");
+                {
+                    xn.ParentNode.RemoveChild(xn);//<ID Num="999">888</ID> delete entire node       -->  XMLHelper.Delete(path, "PersonF/person[@Name='Person3']/ID", "");
+                }                    
                 else
-                    xe.RemoveAttribute(attribute);//<ID Num="999">888</ID> 变为<ID>888</ID> XMLHelper.Delete(path, "PersonF/person[@Name='Person3']/ID", "Num");
+                {
+                    xe.RemoveAttribute(attribute);//<ID Num="999">888</ID> update to:<ID>888</ID>   -->  XMLHelper.Delete(path, "PersonF/person[@Name='Person3']/ID", "Num");
+                }                    
                 doc.Save(path);
                 return true;
             }

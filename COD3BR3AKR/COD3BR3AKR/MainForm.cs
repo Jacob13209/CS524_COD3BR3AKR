@@ -158,5 +158,15 @@ namespace COD3BR3AKR
                     break;
             }
         }
+
+        private void txtKey_TextChanged(object sender, EventArgs e)
+        {
+            this._customizedKey = this.txtKey.Text;
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

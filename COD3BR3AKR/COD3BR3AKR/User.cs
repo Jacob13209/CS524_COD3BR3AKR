@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -32,6 +33,24 @@ namespace COD3BR3AKR
 
     public static class UserManager
     {
+        private static string ComputeMD5Hash(string strSource)
+        {
+            string strMD5Hash = "";
+
+            MD5 md5 = new MD5CryptoServiceProvider();
+
+            byte[] byteSource = System.Text.Encoding.UTF8.GetBytes(strSource);
+
+            byte[] byteMD5Hash = md5.ComputeHash(byteSource);
+
+            for (int i = 0; i < byteMD5Hash.Length; i++)
+            {
+                strMD5Hash += byteMD5Hash[i];
+            }
+
+            return strMD5Hash;
+        }
+
         public static void InitializeInitialUserID()
         {
             INIFile myINIFile = new INIFile(AccountManagement.USER_ID_INIT);
@@ -77,7 +96,7 @@ namespace COD3BR3AKR
             {
                 foreach (User user in currentUsers)
                 {
-                    if (user.UserName == username && user.Password == password)
+                    if (user.UserName == username && user.Password == ComputeMD5Hash(password))
                     {
                         userAuthicated = true;
                         break;
@@ -154,7 +173,7 @@ namespace COD3BR3AKR
             #region XML Serialization
             XmlSerializer serializer;
 
-            User newUser = new User(GetNewUserID(), username, password);
+            User newUser = new User(GetNewUserID(), username, ComputeMD5Hash(password), status);
 
             // Empty namespace 
             XmlSerializerNamespaces nameSpace = new XmlSerializerNamespaces();
@@ -199,17 +218,6 @@ namespace COD3BR3AKR
                 Console.WriteLine(e.Message);
             }
             #endregion
-
-            #region XML Helper
-            //TODO: call XML Helper to add user info into XML file
-
-            //XMLHelper.Insert(AccountManagement.USER_INFO_CONFIG, "Users", "User", "ID", newUserID.ToString());
-            //userRoot = string.Format("Users/User[@ID='{0}']", newUserID.ToString());
-
-            //XMLHelper.Insert(AccountManagement.USER_INFO_CONFIG, userRoot, "UserName", "", username);
-            //XMLHelper.Insert(AccountManagement.USER_INFO_CONFIG, userRoot, "Password", "", password);
-            //XMLHelper.Insert(AccountManagement.USER_INFO_CONFIG, userRoot, "UserStatus", "", "ACTIVE");
-            #endregion
             return addResult;
         }
 
@@ -238,10 +246,10 @@ namespace COD3BR3AKR
             }
         }
 
-        public static bool UpdateUser(User userTobeUpdated)
+        private static bool UpdateUser(User userTobeUpdated)
         {
-            bool retRes = true;
-            string nodeStr = string.Format("Users/User[@ID='{0}']", userTobeUpdated.UserID);
+            bool    retRes  = true;
+            string  nodeStr = string.Format("Users/User[@ID='{0}']", userTobeUpdated.UserID);
 
             try
             {
@@ -254,6 +262,21 @@ namespace COD3BR3AKR
                 retRes = false;
             }
             return retRes;
+        }
+
+        public static bool UpdateUser(string userID, string username, string password, string userstatus)
+        {
+            User tempUser = new User();
+            try
+            {
+                tempUser.UserID = Convert.ToInt32(userID);
+                tempUser.UserName = username;
+                tempUser.Password = ComputeMD5Hash(password);
+                tempUser.UserStatus = userstatus;
+            }
+            catch { }
+           
+            return UpdateUser(tempUser);
         }
 
         public static bool UpdateUser(string userID, string userstatus)
@@ -320,7 +343,7 @@ namespace COD3BR3AKR
                 }
             }
 
-            tempUser.Password = password;
+            tempUser.Password = ComputeMD5Hash(password);
             tempUser.UserStatus = "ACTIVE";
             return UpdateUser(tempUser);
         }

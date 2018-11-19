@@ -365,6 +365,7 @@
             this.allUserView.BackgroundColor = System.Drawing.SystemColors.Control;
             this.allUserView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.allUserView.Location = new System.Drawing.Point(25, 23);
+            this.allUserView.MultiSelect = false;
             this.allUserView.Name = "allUserView";
             this.allUserView.ReadOnly = true;
             this.allUserView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;

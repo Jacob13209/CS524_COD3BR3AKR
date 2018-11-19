@@ -298,9 +298,8 @@ namespace COD3BR3AKR
                         UserManager.UpdateUser(this._userID, this._userStatus);
                     }
                     else
-                    {
-                        User userToBeUpdated = new User(Int32.Parse(this._userID), this._userName, this._password, this._userStatus);
-                        UserManager.UpdateUser(userToBeUpdated);
+                    {                        
+                        UserManager.UpdateUser(this._userID, this._userName, this._password, this._userStatus);
                     }
                 }
             }
