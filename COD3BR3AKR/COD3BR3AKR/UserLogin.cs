@@ -39,9 +39,8 @@ namespace COD3BR3AKR
             else if (UserManager.IsUserAuthPass(_username, _password) == true)
             {
                 string welcomeMsg = string.Format("Weclome to COD3BR3AKR! {0}", _username);
-                MessageBox.Show(welcomeMsg, "Information", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                MessageBox.Show(welcomeMsg, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
-
                 MainForm myMain = new MainForm();
                 myMain.Show();                
             }
@@ -57,7 +56,6 @@ namespace COD3BR3AKR
                 showError("The username or password is incorrect! Try again.");               
             }                        
         }
-
 
         private void linLableForgetPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -97,7 +95,7 @@ namespace COD3BR3AKR
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Ready to exit!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            MessageBox.Show("Ready to exit!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
     }

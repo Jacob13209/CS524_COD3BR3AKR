@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.activityLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,6 +69,9 @@
             this.labSignOut = new System.Windows.Forms.LinkLabel();
             this.labStatus = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
+            this.labDuration = new System.Windows.Forms.Label();
+            this.btnImportKey = new System.Windows.Forms.Button();
+            this.myToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.mainMenuStrip.SuspendLayout();
             this.mainTabCtrl.SuspendLayout();
             this.tabEncrypt.SuspendLayout();
@@ -151,6 +156,7 @@
             this.aboutCOD3BR3AKRToolStripMenuItem.Name = "aboutCOD3BR3AKRToolStripMenuItem";
             this.aboutCOD3BR3AKRToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.aboutCOD3BR3AKRToolStripMenuItem.Text = "About COD3BR3AKR";
+            this.aboutCOD3BR3AKRToolStripMenuItem.Click += new System.EventHandler(this.aboutCOD3BR3AKRToolStripMenuItem_Click);
             // 
             // mainTabCtrl
             // 
@@ -207,6 +213,8 @@
             this.txtFileOutput.ReadOnly = true;
             this.txtFileOutput.Size = new System.Drawing.Size(499, 20);
             this.txtFileOutput.TabIndex = 4;
+            this.txtFileOutput.TextChanged += new System.EventHandler(this.txtFileOutput_TextChanged);
+            this.txtFileOutput.MouseHover += new System.EventHandler(this.txtFileOutput_MouseHover);
             // 
             // label6
             // 
@@ -234,6 +242,8 @@
             this.txtFileInput.ReadOnly = true;
             this.txtFileInput.Size = new System.Drawing.Size(499, 20);
             this.txtFileInput.TabIndex = 1;
+            this.txtFileInput.TextChanged += new System.EventHandler(this.txtFileInput_TextChanged);
+            this.txtFileInput.MouseHover += new System.EventHandler(this.txtFileInput_MouseHover);
             // 
             // label5
             // 
@@ -299,6 +309,7 @@
             // txtRichInput
             // 
             this.txtRichInput.Location = new System.Drawing.Point(24, 42);
+            this.txtRichInput.MaxLength = 300;
             this.txtRichInput.Name = "txtRichInput";
             this.txtRichInput.Size = new System.Drawing.Size(315, 103);
             this.txtRichInput.TabIndex = 0;
@@ -319,7 +330,8 @@
             // 
             // groupAlgorithmOptions
             // 
-            this.groupAlgorithmOptions.BackColor = System.Drawing.Color.DarkGray;
+            this.groupAlgorithmOptions.BackColor = System.Drawing.SystemColors.Control;
+            this.groupAlgorithmOptions.Controls.Add(this.btnImportKey);
             this.groupAlgorithmOptions.Controls.Add(this.cbKeyRequired);
             this.groupAlgorithmOptions.Controls.Add(this.comboAlogrithms);
             this.groupAlgorithmOptions.Controls.Add(this.txtKey);
@@ -334,8 +346,9 @@
             // 
             // cbKeyRequired
             // 
+            this.cbKeyRequired.AutoCheck = false;
             this.cbKeyRequired.AutoSize = true;
-            this.cbKeyRequired.Location = new System.Drawing.Point(354, 42);
+            this.cbKeyRequired.Location = new System.Drawing.Point(356, 42);
             this.cbKeyRequired.Name = "cbKeyRequired";
             this.cbKeyRequired.Size = new System.Drawing.Size(90, 17);
             this.cbKeyRequired.TabIndex = 4;
@@ -355,9 +368,10 @@
             // 
             this.txtKey.Location = new System.Drawing.Point(553, 38);
             this.txtKey.Name = "txtKey";
-            this.txtKey.Size = new System.Drawing.Size(171, 20);
+            this.txtKey.Size = new System.Drawing.Size(150, 20);
             this.txtKey.TabIndex = 2;
             this.txtKey.TextChanged += new System.EventHandler(this.txtKey_TextChanged);
+            this.txtKey.MouseHover += new System.EventHandler(this.txtKey_MouseHover);
             // 
             // label2
             // 
@@ -380,7 +394,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(34, 517);
+            this.label3.Location = new System.Drawing.Point(18, 499);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 3;
@@ -389,7 +403,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 490);
+            this.label4.Location = new System.Drawing.Point(9, 526);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 13);
             this.label4.TabIndex = 5;
@@ -397,7 +411,8 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(590, 507);
+            this.btnCancel.Enabled = false;
+            this.btnCancel.Location = new System.Drawing.Point(592, 507);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 32);
             this.btnCancel.TabIndex = 7;
@@ -428,9 +443,11 @@
             // labStatus
             // 
             this.labStatus.AutoSize = true;
-            this.labStatus.Location = new System.Drawing.Point(83, 517);
+            this.labStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labStatus.ForeColor = System.Drawing.Color.Teal;
+            this.labStatus.Location = new System.Drawing.Point(68, 498);
             this.labStatus.Name = "labStatus";
-            this.labStatus.Size = new System.Drawing.Size(38, 13);
+            this.labStatus.Size = new System.Drawing.Size(43, 13);
             this.labStatus.TabIndex = 10;
             this.labStatus.Text = "Ready";
             // 
@@ -444,11 +461,32 @@
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
+            // labDuration
+            // 
+            this.labDuration.AutoSize = true;
+            this.labDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labDuration.ForeColor = System.Drawing.Color.Teal;
+            this.labDuration.Location = new System.Drawing.Point(69, 526);
+            this.labDuration.Name = "labDuration";
+            this.labDuration.Size = new System.Drawing.Size(0, 13);
+            this.labDuration.TabIndex = 12;
+            // 
+            // btnImportKey
+            // 
+            this.btnImportKey.Location = new System.Drawing.Point(707, 36);
+            this.btnImportKey.Name = "btnImportKey";
+            this.btnImportKey.Size = new System.Drawing.Size(85, 23);
+            this.btnImportKey.TabIndex = 6;
+            this.btnImportKey.Text = "Import Key";
+            this.btnImportKey.UseVisualStyleBackColor = true;
+            this.btnImportKey.Click += new System.EventHandler(this.btnImportKey_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(847, 558);
+            this.Controls.Add(this.labDuration);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.labStatus);
             this.Controls.Add(this.labSignOut);
@@ -459,6 +497,7 @@
             this.Controls.Add(this.groupAlgorithmOptions);
             this.Controls.Add(this.mainTabCtrl);
             this.Controls.Add(this.mainMenuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mainMenuStrip;
             this.Name = "MainForm";
             this.Text = "COD3BR3AKR";
@@ -519,5 +558,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label labStatus;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Label labDuration;
+        private System.Windows.Forms.Button btnImportKey;
+        private System.Windows.Forms.ToolTip myToolTip;
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AccountManagement));
             this.tabManagement = new System.Windows.Forms.TabControl();
             this.tabRegistration = new System.Windows.Forms.TabPage();
             this.groupUserRegReset = new System.Windows.Forms.GroupBox();
@@ -379,6 +380,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(609, 411);
             this.Controls.Add(this.tabManagement);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AccountManagement";
             this.Text = "COD3BR3AKR - AccountManagement";
             this.Load += new System.EventHandler(this.AccountManagement_Load);

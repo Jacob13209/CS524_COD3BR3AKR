@@ -6,9 +6,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("COD3BR3AKR")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("This system is implemented as Course Project for Class CS524 - Priciple of Software Engineering.\n" +
+                               "'Diverse Engineers' Fall 2018")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Computer Science Department at Hood College")]
 [assembly: AssemblyProduct("COD3BR3AKR")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]

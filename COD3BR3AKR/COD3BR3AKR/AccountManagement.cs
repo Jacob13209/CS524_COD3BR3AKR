@@ -117,7 +117,7 @@ namespace COD3BR3AKR
                         // add new user into system
                         if (UserManager.AddNewUser(this._userName, this._password) == true)
                         {
-                            MessageBox.Show("Registeration Successful! \nPlease login with new Username and Password.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                            MessageBox.Show("Registeration Successful! \nPlease login with new Username and Password.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.Close();
                         }
                         else
@@ -141,7 +141,7 @@ namespace COD3BR3AKR
                     {
                         if (UserManager.ResetUser(this._userName, this._password) == true)
                         {
-                            MessageBox.Show("Password Reset Successful! \nPlease login with new password", "Information", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                            MessageBox.Show("Password Reset Successful! \nPlease login with new password", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.Close();
                         }
                         else
@@ -278,6 +278,10 @@ namespace COD3BR3AKR
             }
 
             UserManager.AddNewUser(this._userName, this._password, this._userStatus);
+
+            string infoMsg = string.Format("User {0} has been added to the system successfully!", this._userName);
+
+            MessageBox.Show(infoMsg, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -301,6 +305,10 @@ namespace COD3BR3AKR
                     {                        
                         UserManager.UpdateUser(this._userID, this._userName, this._password, this._userStatus);
                     }
+
+                    string infoMsg = string.Format("User {0} has been updated successfully!", this._userName);
+
+                    MessageBox.Show(infoMsg, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -313,6 +321,10 @@ namespace COD3BR3AKR
             {
                 UserManager.RemoveUser(this._userID);
             }
+
+            string infoMsg = string.Format("User {0} has been deleted from the system successfully!", this._userName);
+
+            MessageBox.Show(infoMsg, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 
