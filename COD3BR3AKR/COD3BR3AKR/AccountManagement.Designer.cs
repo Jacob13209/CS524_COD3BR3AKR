@@ -32,6 +32,7 @@
             this.tabManagement = new System.Windows.Forms.TabControl();
             this.tabRegistration = new System.Windows.Forms.TabPage();
             this.groupUserRegReset = new System.Windows.Forms.GroupBox();
+            this.labUserNameCheck = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -94,6 +95,7 @@
             // 
             // groupUserRegReset
             // 
+            this.groupUserRegReset.Controls.Add(this.labUserNameCheck);
             this.groupUserRegReset.Controls.Add(this.label3);
             this.groupUserRegReset.Controls.Add(this.btnCancel);
             this.groupUserRegReset.Controls.Add(this.label2);
@@ -108,6 +110,14 @@
             this.groupUserRegReset.TabIndex = 3;
             this.groupUserRegReset.TabStop = false;
             this.groupUserRegReset.Text = "New User";
+            // 
+            // labUserNameCheck
+            // 
+            this.labUserNameCheck.AutoSize = true;
+            this.labUserNameCheck.Location = new System.Drawing.Point(343, 56);
+            this.labUserNameCheck.Name = "labUserNameCheck";
+            this.labUserNameCheck.Size = new System.Drawing.Size(0, 13);
+            this.labUserNameCheck.TabIndex = 12;
             // 
             // label3
             // 
@@ -173,6 +183,8 @@
             this.txtUserName.Size = new System.Drawing.Size(153, 26);
             this.txtUserName.TabIndex = 6;
             this.txtUserName.TextChanged += new System.EventHandler(this.txtUserName_TextChanged);
+            this.txtUserName.Enter += new System.EventHandler(this.txtUserName_Enter);
+            this.txtUserName.Leave += new System.EventHandler(this.txtUserName_Leave);
             // 
             // txtPassword
             // 
@@ -383,6 +395,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AccountManagement";
             this.Text = "COD3BR3AKR - AccountManagement";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AccountManagement_FormClosed);
             this.Load += new System.EventHandler(this.AccountManagement_Load);
             this.Shown += new System.EventHandler(this.AccountManagement_Shown);
             this.tabManagement.ResumeLayout(false);
@@ -430,5 +443,6 @@
         private System.Windows.Forms.TextBox info_pass_txt;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox info_Status_combo;
+        private System.Windows.Forms.Label labUserNameCheck;
     }
 }

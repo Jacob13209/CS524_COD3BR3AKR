@@ -57,6 +57,7 @@
             this.txtRichInput = new System.Windows.Forms.RichTextBox();
             this.tabDecrypt = new System.Windows.Forms.TabPage();
             this.groupAlgorithmOptions = new System.Windows.Forms.GroupBox();
+            this.btnImportKey = new System.Windows.Forms.Button();
             this.cbKeyRequired = new System.Windows.Forms.CheckBox();
             this.comboAlogrithms = new System.Windows.Forms.ComboBox();
             this.txtKey = new System.Windows.Forms.TextBox();
@@ -70,7 +71,6 @@
             this.labStatus = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
             this.labDuration = new System.Windows.Forms.Label();
-            this.btnImportKey = new System.Windows.Forms.Button();
             this.myToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.mainMenuStrip.SuspendLayout();
             this.mainTabCtrl.SuspendLayout();
@@ -126,13 +126,13 @@
             this.advancedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.userManagementToolStripMenuItem});
             this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
-            this.advancedToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.advancedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.advancedToolStripMenuItem.Text = "Advanced";
             // 
             // userManagementToolStripMenuItem
             // 
             this.userManagementToolStripMenuItem.Name = "userManagementToolStripMenuItem";
-            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.userManagementToolStripMenuItem.Text = "User Management";
             this.userManagementToolStripMenuItem.Click += new System.EventHandler(this.userManagementToolStripMenuItem_Click);
             // 
@@ -309,7 +309,6 @@
             // txtRichInput
             // 
             this.txtRichInput.Location = new System.Drawing.Point(24, 42);
-            this.txtRichInput.MaxLength = 300;
             this.txtRichInput.Name = "txtRichInput";
             this.txtRichInput.Size = new System.Drawing.Size(315, 103);
             this.txtRichInput.TabIndex = 0;
@@ -343,6 +342,16 @@
             this.groupAlgorithmOptions.TabIndex = 2;
             this.groupAlgorithmOptions.TabStop = false;
             this.groupAlgorithmOptions.Text = "Algorithm Options";
+            // 
+            // btnImportKey
+            // 
+            this.btnImportKey.Location = new System.Drawing.Point(707, 36);
+            this.btnImportKey.Name = "btnImportKey";
+            this.btnImportKey.Size = new System.Drawing.Size(85, 23);
+            this.btnImportKey.TabIndex = 6;
+            this.btnImportKey.Text = "Import Key";
+            this.btnImportKey.UseVisualStyleBackColor = true;
+            this.btnImportKey.Click += new System.EventHandler(this.btnImportKey_Click);
             // 
             // cbKeyRequired
             // 
@@ -471,16 +480,6 @@
             this.labDuration.Size = new System.Drawing.Size(0, 13);
             this.labDuration.TabIndex = 12;
             // 
-            // btnImportKey
-            // 
-            this.btnImportKey.Location = new System.Drawing.Point(707, 36);
-            this.btnImportKey.Name = "btnImportKey";
-            this.btnImportKey.Size = new System.Drawing.Size(85, 23);
-            this.btnImportKey.TabIndex = 6;
-            this.btnImportKey.Text = "Import Key";
-            this.btnImportKey.UseVisualStyleBackColor = true;
-            this.btnImportKey.Click += new System.EventHandler(this.btnImportKey_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -501,6 +500,7 @@
             this.MainMenuStrip = this.mainMenuStrip;
             this.Name = "MainForm";
             this.Text = "COD3BR3AKR";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();

@@ -6,22 +6,46 @@ using System.IO;
 namespace COD3BR3AKR
 {
     /// <summary> 
-    /// RSA Encryption and Decryption
+    /// Being used for RSA Text string Encryption and Decryption
     /// </summary> 
     public class RSACryption : Cryptor
     {
+        /*****************************************************************************************************
+         * The max number of bytes which can be encrypted with a particular key size with the following:
+         *        ((KeySize - 384) / 8) + 37
+         *  However, if the optimal asymmetric encryption padding (OAEP) parameter is true, as it is in the original post, the following can be used to calculate the max bytes:
+         *        ((KeySize - 384) / 8) + 7
+         *  Note:The legal key sizes are 384 thru 16384 with a skip size of 8.
+         *
+         ****************************************************************************************************/
+        private static readonly int KEY_SIZE_FOR_MAX_TEXT_INPUT = 5120;
+
         public RSACryption(string key) : base(key) {}
 
+        /// <summary>
+        /// Override function for Encryting file
+        /// </summary>
+        /// <param name="fileInput">input file path</param>
+        /// <param name="fileOutput">output file path</param>
+        /// <returns></returns>
         public override bool Encrypt(string fileInput, string fileOutput)
         {
+            // Not supported for File handle due to various file size
             return true;
         }
+
+        /// <summary>
+        /// Override function for decrypting a file
+        /// </summary>
+        /// <param name="fileInput">input file path</param>
+        /// <param name="fileOutput">output file path</param>
+        /// <returns></returns>
         public override bool Decrypt(string fileInput, string fileOutput)
         {
+            // Not supported for File handle due to various file size
             return true;
         }     
 
-        #region RSA Key Generation 
         /// <summary>
         /// Public and Private key generation 
         /// </summary>
@@ -32,7 +56,7 @@ namespace COD3BR3AKR
             string privateKey = string.Empty;
             string publicKey  = string.Empty;
 
-            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(KEY_SIZE_FOR_MAX_TEXT_INPUT);
             privateKey = rsa.ToXmlString(true);
             using (StreamWriter sw = File.CreateText(privatePath))
             {
@@ -45,9 +69,12 @@ namespace COD3BR3AKR
                 sw.Write(publicKey);
             }
         }
-        #endregion
 
-        #region RSA string Encryption
+        /// <summary>
+        /// Encrypt Text String
+        /// </summary>
+        /// <param name="plainText">plain text string input</param>
+        /// <returns>encrypted string</returns>
         public override string Encrypt(string plainText)
         {
             byte[] plainTextBArray;
@@ -55,7 +82,7 @@ namespace COD3BR3AKR
             string cipherText = string.Empty;
             try
             {
-                RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+                RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(KEY_SIZE_FOR_MAX_TEXT_INPUT);
                 rsa.FromXmlString(this.CryptionKey);
                 plainTextBArray = (new UnicodeEncoding()).GetBytes(plainText);
                 cipherTextBArray = rsa.Encrypt(plainTextBArray, false);
@@ -68,32 +95,23 @@ namespace COD3BR3AKR
 
             return cipherText;
         }
-        //RSA byte[] encryption
-        public string RSAEncrypt(string xmlPublicKey, byte[] EncryptString)
-        {
-            byte[] CypherTextBArray;
-            string Result;
-            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
-            rsa.FromXmlString(xmlPublicKey);
-            CypherTextBArray = rsa.Encrypt(EncryptString, false);
-            Result = Convert.ToBase64String(CypherTextBArray);
-            return Result;
 
-        }
-        #endregion
-
-        #region RSA string Decryption
+        /// <summary>
+        /// Decrypt the encrypted text input
+        /// </summary>
+        /// <param name="cipherText">encrypted text string input</param>
+        /// <returns>decrypted string</returns>
         public override string Decrypt(string cipherText)
         {
-            byte[] plainTextBArray;
+            byte[] encryptedTextArray;
             byte[] decryptedTextBArray;
             string plainText = string.Empty;
             try
             {
-                RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+                RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(KEY_SIZE_FOR_MAX_TEXT_INPUT);
                 rsa.FromXmlString(this.CryptionKey);
-                plainTextBArray = Convert.FromBase64String(cipherText);
-                decryptedTextBArray = rsa.Decrypt(plainTextBArray, false);
+                encryptedTextArray = Convert.FromBase64String(cipherText);
+                decryptedTextBArray = rsa.Decrypt(encryptedTextArray, false);
                 plainText = (new UnicodeEncoding()).GetString(decryptedTextBArray);
             }
             catch(Exception e)
@@ -103,20 +121,6 @@ namespace COD3BR3AKR
             
             return plainText;
         }
-
-        //RSA byte[] decryption
-        public string RSADecrypt(string xmlPrivateKey, byte[] DecryptString)
-        {
-            byte[] DypherTextBArray;
-            string Result;
-            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
-            rsa.FromXmlString(xmlPrivateKey);
-            DypherTextBArray = rsa.Decrypt(DecryptString, false);
-            Result = (new UnicodeEncoding()).GetString(DypherTextBArray);
-            return Result;
-
-        }
-        #endregion
     }
 }
 

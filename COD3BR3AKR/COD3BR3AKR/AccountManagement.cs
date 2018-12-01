@@ -20,6 +20,7 @@ namespace COD3BR3AKR
         private string _confirmedPassword = string.Empty;
 
         private UserManageMode _manageMode;
+        private static UserManageMode _currentManageMode;
 
         public static readonly string USER_INFO_CONFIG = Application.StartupPath + @"\SystemUsers.xml";
         public static readonly string USER_ID_INIT     = Application.StartupPath + @"\Setup.ini";
@@ -32,6 +33,27 @@ namespace COD3BR3AKR
         }
 
         private readonly string[] SupportedUserStatus = new string[] {"ACTIVE", "INACTIVE" };
+
+        private static AccountManagement _onlyAccountManagement;
+
+        public static AccountManagement CreateInstance(UserManageMode mode)
+        {
+            if (_onlyAccountManagement == null )
+            {
+                _currentManageMode = mode;
+                _onlyAccountManagement = new AccountManagement(mode);
+            }
+            else
+            {
+                if (_currentManageMode != mode)
+                {
+                    _onlyAccountManagement.Close();
+                    _onlyAccountManagement = new AccountManagement(mode);
+                }
+            }
+
+            return _onlyAccountManagement;
+        }
 
         public AccountManagement(UserManageMode mode)
         {
@@ -239,6 +261,7 @@ namespace COD3BR3AKR
                     this.info_ID_txt.Text = row.Cells[0].Value.ToString();
                     this.info_name_txt.Text = row.Cells[1].Value.ToString();
                     this.info_Status_combo.SelectedItem = row.Cells[2].Value.ToString();
+                    this.info_pass_txt.Text = string.Empty;
                 }
             }
             catch { }
@@ -338,6 +361,28 @@ namespace COD3BR3AKR
             return false;
         }
 
+        private void txtUserName_Leave(object sender, EventArgs e)
+        {
+            if (UserManager.IsUserExist(this._userName) == false)
+            {
+                this.labUserNameCheck.Text = "Valid";
+                this.labUserNameCheck.ForeColor = Color.Green;
+            }
+            else
+            {
+                this.labUserNameCheck.Text = "*Already Exist";
+                this.labUserNameCheck.ForeColor = Color.Red;
+            }
+        }
 
+        private void txtUserName_Enter(object sender, EventArgs e)
+        {
+            this.labUserNameCheck.Text = string.Empty;
+        }
+
+        private void AccountManagement_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _onlyAccountManagement = null;
+        }
     }
 }

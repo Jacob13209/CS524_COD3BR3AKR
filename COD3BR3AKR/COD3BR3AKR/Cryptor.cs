@@ -73,7 +73,7 @@ namespace COD3BR3AKR
 
         public bool Decrypt(string inputFile, string outputFile)
         {
-            return cryptor.Encrypt(inputFile, outputFile);
+            return cryptor.Decrypt(inputFile, outputFile);
         }
     }
 }

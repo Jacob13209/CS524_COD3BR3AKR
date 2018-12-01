@@ -36,10 +36,7 @@ namespace COD3BR3AKR
 
     public partial class MainForm : Form
     {
-        public MainForm()
-        {
-            InitializeComponent();
-        }
+        private readonly int MAX_ENCRYPTION_LENGTH = 300;        
 
         private SystemMode              _userMode;
         private InputOption             _inputOption;
@@ -57,8 +54,12 @@ namespace COD3BR3AKR
 
         private bool   _fileCryptionRes = false;
 
+        private bool    _isSignOut      = false;
         private bool    _isKeyRequired  = false;
         private string  _customizedKey  = string.Empty;
+
+        private UserLogin _loginForm;
+        private AccountManagement _accountManagementForm;
 
         Dictionary<SupportedAlogrithm, bool> AlogrithmKeyPair = new Dictionary<SupportedAlogrithm, bool>()
         {
@@ -66,6 +67,17 @@ namespace COD3BR3AKR
             { SupportedAlogrithm.RSA,       true },
             { SupportedAlogrithm.TripleDES, true }
         };
+
+        public MainForm()
+        {
+            InitializeComponent();
+        }
+
+        public MainForm(UserLogin loginForm)
+        {
+            this._loginForm = loginForm;
+            InitializeComponent();
+        }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -83,7 +95,10 @@ namespace COD3BR3AKR
 
         private void labSignOut_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            
+            _isSignOut = true;
+            _loginForm.Show();
+            _loginForm.resetUserInput();
+            this.Close();
         }
 
         private void mainTabCtrl_SelectedIndexChanged(object sender, EventArgs e)
@@ -106,9 +121,9 @@ namespace COD3BR3AKR
 
         private void userManagementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AccountManagement accountManagement = new AccountManagement(AccountManagement.UserManageMode.eManagement);
-
-            accountManagement.Show();
+            _accountManagementForm = AccountManagement.CreateInstance(AccountManagement.UserManageMode.eManagement);
+            _accountManagementForm.TopMost = true;
+            _accountManagementForm.Show();                      
         }
 
         private void comboAlogrithms_SelectedIndexChanged(object sender, EventArgs e)
@@ -126,22 +141,38 @@ namespace COD3BR3AKR
 
             if (this._selectedAlogrithm == SupportedAlogrithm.RSA)
             {
-                string message = string.Format("RSA needs Public/Private keys for Encryption/Decryption.\nDo you want to Generate and Save them?");
-                DialogResult dialogResult = MessageBox.Show(message, "NOTICE", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                string message = string.Empty;
+
+                if (this._inputOption == InputOption.eFile)
                 {
-                    // generate public and private keys
-                    RSACryption.GenerateRSAKeys(CryptionHelper.PRIVATE_KEY_PATH, CryptionHelper.PUBLIC_KEY_PATH);
-                    message = string.Format("PublicKey.xml and PrivateKey.xml are saved at: \n{0}", Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
-                    MessageBox.Show(message,"Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    message = string.Format("RSA is not supported yet for File Input!\nPlease try a different alogrithm.");
+                    MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                else
+                {
+                    message = string.Format("RSA needs Public/Private keys for Encryption/Decryption.\nDo you want to Generate and Save them?");
+                    DialogResult dialogResult = MessageBox.Show(message, "NOTICE", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        // generate public and private keys
+                        RSACryption.GenerateRSAKeys(CryptionHelper.PRIVATE_KEY_PATH, CryptionHelper.PUBLIC_KEY_PATH);
+                        message = string.Format("PublicKey.xml and PrivateKey.xml are saved at: \n{0}", Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
+                        MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }                
             }
         }
 
         private void txtRichInput_TextChanged(object sender, EventArgs e)
         {
             this._textInput = this.txtRichInput.Text;
-
+            if (this._userMode == SystemMode.eEncryption && this._textInput.Length > MAX_ENCRYPTION_LENGTH)
+            {
+                string warningMsg = string.Format("{0} characters is the maximum input for Encryption! \nYou have entered {1} characters.", 
+                                                  MAX_ENCRYPTION_LENGTH, 
+                                                  this._textInput.Length);
+                MessageBox.Show(warningMsg, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void txtRichInput_Enter(object sender, EventArgs e)
@@ -175,7 +206,7 @@ namespace COD3BR3AKR
                 this._inputOption = InputOption.eFile;
                 this.groupText.Enabled = false;
 
-                this._outputFilePath = Path.GetDirectoryName(this._inputFilePath) + "\\" + _inputFileName + ((this._userMode == SystemMode.eDecryption) ? ".dec" : ".enc");
+                this._outputFilePath = Path.GetDirectoryName(this._inputFilePath) + "\\" + _inputFileName + ((this._userMode == SystemMode.eDecryption) ? "_DECRYPTED" : "_ENCRYPTED");
                 this.txtFileOutput.Text = this._outputFilePath;
             }
         }
@@ -224,8 +255,20 @@ namespace COD3BR3AKR
                                 this._fileCryptionRes = myHelper.Encrypt(this._inputFilePath, this._outputFilePath);
                                 break;
                             case InputOption.eText:
-                                this._textOutput = myHelper.Encrypt(this._textInput);
-                                this.txtRichOutput.Text = this._textOutput;
+                                // check the input length to make sure it is less than the maximum allowed
+                                // this is only a requirement for Encryption Text only 
+                                if (this._textInput.Length > MAX_ENCRYPTION_LENGTH)
+                                {
+                                    string errorMsg = string.Format("Only {0} characters is allowed! \nPlease make sure to remove {1} characters and try again.",
+                                                    MAX_ENCRYPTION_LENGTH,
+                                                    (this._textInput.Length - MAX_ENCRYPTION_LENGTH));
+                                    MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                else
+                                {
+                                    this._textOutput = myHelper.Encrypt(this._textInput);
+                                    this.txtRichOutput.Text = this._textOutput;
+                                }                                
                                 break;
                         }
                         break;
@@ -400,6 +443,25 @@ namespace COD3BR3AKR
             {
                 myToolTip.SetToolTip(this.txtFileOutput, this._outputFilePath);
             }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_isSignOut == true)
+            {
+                try
+                {
+                    _accountManagementForm.Close();
+                    //TODO: Close the Log Viewer if necessary
+                } catch { }
+                return;
+            }
+            try
+            {
+                _loginForm.Close();
+                _accountManagementForm.Close();
+                Environment.Exit(0);
+            } catch{ }
         }
     }
 }

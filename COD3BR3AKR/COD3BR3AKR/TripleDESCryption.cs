@@ -38,7 +38,6 @@ namespace COD3BR3AKR
                         using (CryptoStream cs = new CryptoStream(ms, tripleDESCryptoService.CreateEncryptor(), CryptoStreamMode.Write))
                         {
                             cs.Write(encryptedArray, 0, encryptedArray.Length);
-                            cs.Close();
                         }
                         tripleDESCryptoService.Clear();
                         cipherText = Convert.ToBase64String(ms.ToArray());
@@ -73,7 +72,6 @@ namespace COD3BR3AKR
                         using (CryptoStream cs = new CryptoStream(ms, tripleDESCryptoService.CreateDecryptor(), CryptoStreamMode.Write))
                         {
                             cs.Write(decryptedArray, 0, decryptedArray.Length);
-                            cs.Close();
                         }
                         tripleDESCryptoService.Clear();
                         plainText = UTF8Encoding.UTF8.GetString(ms.ToArray());
@@ -90,10 +88,67 @@ namespace COD3BR3AKR
 
         public override bool Encrypt(string fileInput, string fileOutput)
         {
+            MD5CryptoServiceProvider myMD5CryptoService = new MD5CryptoServiceProvider();
+            byte[] securityKeyArray = myMD5CryptoService.ComputeHash(UTF8Encoding.UTF8.GetBytes(this.CryptionKey));
+            try
+            {
+                using (var tripleDESCryptoService = new TripleDESCryptoServiceProvider())
+                {
+                    tripleDESCryptoService.Key = securityKeyArray;
+                    tripleDESCryptoService.Mode = CipherMode.ECB;
+                    tripleDESCryptoService.Padding = PaddingMode.PKCS7;
+
+                    ICryptoTransform encryptor = tripleDESCryptoService.CreateEncryptor();
+
+                    using (FileStream inputStream = File.Open(fileInput, FileMode.Open, FileAccess.Read, FileShare.Read))
+                    {
+                        using (FileStream outputStream = File.Open(fileOutput, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
+                        {
+                            using (CryptoStream cs = new CryptoStream(outputStream, encryptor, CryptoStreamMode.Write))
+                            {
+                                inputStream.CopyTo(cs);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
             return true;
         }
         public override bool Decrypt(string fileInput, string fileOutput)
         {
+            MD5CryptoServiceProvider myMD5CryptoService = new MD5CryptoServiceProvider();
+            byte[] securityKeyArray = myMD5CryptoService.ComputeHash(UTF8Encoding.UTF8.GetBytes(this.CryptionKey));
+            try
+            {
+                using (var tripleDESCryptoService = new TripleDESCryptoServiceProvider())
+                {
+                    tripleDESCryptoService.Key = securityKeyArray;
+                    tripleDESCryptoService.Mode = CipherMode.ECB;
+                    tripleDESCryptoService.Padding = PaddingMode.PKCS7;
+
+                    ICryptoTransform decryptor = tripleDESCryptoService.CreateDecryptor();
+
+                    using (FileStream inputStream = File.Open(fileInput, FileMode.Open, FileAccess.Read, FileShare.Read))
+                    {
+                        using (FileStream outputStream = File.Open(fileOutput, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
+                        {
+                            using (CryptoStream cs = new CryptoStream(outputStream, decryptor, CryptoStreamMode.Write))
+                            {
+                                inputStream.CopyTo(cs);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
             return true;
         }
     }

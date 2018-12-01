@@ -18,6 +18,8 @@ namespace COD3BR3AKR
         private string _password = string.Empty;
         private int _numberOfFailures = 0;
 
+        MainForm _mainForm;
+
         public UserLogin()
         {
             InitializeComponent();
@@ -32,17 +34,19 @@ namespace COD3BR3AKR
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            // Reset the error msg when User Click on 'Sign in' again
+            this.labError.Text = string.Empty;
+
             if (UserManager.IsUserExist(_username) == true && UserManager.IsUserActive(_username) == false)
             {
                 showError("Your User Account is INACTIVE! Try resetting Password.");
             }
             else if (UserManager.IsUserAuthPass(_username, _password) == true)
             {
-                string welcomeMsg = string.Format("Weclome to COD3BR3AKR! {0}", _username);
-                MessageBox.Show(welcomeMsg, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
-                MainForm myMain = new MainForm();
-                myMain.Show();                
+                // User Authentication success
+                _mainForm = new MainForm(this);
+                _mainForm.Show();
+                this.Hide();
             }
             else
             {
@@ -59,12 +63,12 @@ namespace COD3BR3AKR
 
         private void linLableForgetPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            AccountManagement accountManage = new AccountManagement(AccountManagement.UserManageMode.eUserReset);
-
-            accountManage.Show();
+            AccountManagement _accountManForm = AccountManagement.CreateInstance(AccountManagement.UserManageMode.eUserReset);
+            _accountManForm.TopMost = true;
+            _accountManForm.Show();
         }
 
-        private void resetUserInput()
+        public void resetUserInput()
         {
             this.txtUserName.ResetText();
             this.txtPassword.ResetText();
@@ -88,9 +92,9 @@ namespace COD3BR3AKR
 
         private void linLabelSignUP_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            AccountManagement accountManage = new AccountManagement(AccountManagement.UserManageMode.eUserRegistration);
-
-            accountManage.Show();
+            AccountManagement _accountManForm = AccountManagement.CreateInstance(AccountManagement.UserManageMode.eUserRegistration);
+            _accountManForm.TopMost = true;
+            _accountManForm.Show();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
