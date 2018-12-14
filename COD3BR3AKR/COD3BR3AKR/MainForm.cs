@@ -458,10 +458,51 @@ namespace COD3BR3AKR
             }
             try
             {
-                _loginForm.Close();
-                _accountManagementForm.Close();
-                Environment.Exit(0);
+                string warnMessage = String.Format("Application is going to be CLOSED!\nPlease make sure all work have been saved!\nClick on OK to Confirm.");
+                DialogResult dialogResult = MessageBox.Show(warnMessage, "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.OK)
+                {
+                    e.Cancel = false;
+                    _loginForm.Close();
+                    _accountManagementForm.Close();
+                    Environment.Exit(0);
+                }                
+                else
+                {
+                    e.Cancel = true;
+                }
             } catch{ }
+        }
+
+        private void mainTabCtrl_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            Brush textBrush;
+
+            // Get the item from the collection.
+            TabPage tabPage = this.mainTabCtrl.TabPages[e.Index];
+
+            // Get the real bounds for the tab rectangle.
+            Rectangle tabBounds = this.mainTabCtrl.GetTabRect(e.Index);
+
+            if (e.State == DrawItemState.Selected)
+            {
+                // Draw a different background color, and don't paint a focus rectangle.
+                textBrush = new SolidBrush(Color.Black);
+                g.FillRectangle(Brushes.DarkGray, e.Bounds);
+            }
+            else
+            {
+                textBrush = new System.Drawing.SolidBrush(e.ForeColor);
+            }
+
+            Font tabFont = new Font(e.Font.FontFamily, 10, FontStyle.Bold, GraphicsUnit.Pixel);
+
+
+            StringFormat _StringFlags = new StringFormat();
+            _StringFlags.Alignment = StringAlignment.Center;
+            _StringFlags.LineAlignment = StringAlignment.Center;
+            g.DrawString(this.mainTabCtrl.TabPages[e.Index].Text, tabFont, textBrush, tabBounds, new StringFormat(_StringFlags));
         }
     }
 }

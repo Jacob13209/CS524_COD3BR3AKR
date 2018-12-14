@@ -50,7 +50,6 @@
             this.txtFileInput = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupText = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtRichOutput = new System.Windows.Forms.RichTextBox();
@@ -126,13 +125,13 @@
             this.advancedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.userManagementToolStripMenuItem});
             this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
-            this.advancedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.advancedToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.advancedToolStripMenuItem.Text = "Advanced";
             // 
             // userManagementToolStripMenuItem
             // 
             this.userManagementToolStripMenuItem.Name = "userManagementToolStripMenuItem";
-            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.userManagementToolStripMenuItem.Text = "User Management";
             this.userManagementToolStripMenuItem.Click += new System.EventHandler(this.userManagementToolStripMenuItem_Click);
             // 
@@ -162,11 +161,13 @@
             // 
             this.mainTabCtrl.Controls.Add(this.tabEncrypt);
             this.mainTabCtrl.Controls.Add(this.tabDecrypt);
+            this.mainTabCtrl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.mainTabCtrl.Location = new System.Drawing.Point(12, 41);
             this.mainTabCtrl.Name = "mainTabCtrl";
             this.mainTabCtrl.SelectedIndex = 0;
             this.mainTabCtrl.Size = new System.Drawing.Size(805, 342);
             this.mainTabCtrl.TabIndex = 1;
+            this.mainTabCtrl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.mainTabCtrl_DrawItem);
             this.mainTabCtrl.SelectedIndexChanged += new System.EventHandler(this.mainTabCtrl_SelectedIndexChanged);
             // 
             // tabEncrypt
@@ -175,6 +176,7 @@
             this.tabEncrypt.Controls.Add(this.groupFile);
             this.tabEncrypt.Controls.Add(this.groupText);
             this.tabEncrypt.Location = new System.Drawing.Point(4, 22);
+            this.tabEncrypt.Margin = new System.Windows.Forms.Padding(0);
             this.tabEncrypt.Name = "tabEncrypt";
             this.tabEncrypt.Padding = new System.Windows.Forms.Padding(3);
             this.tabEncrypt.Size = new System.Drawing.Size(797, 316);
@@ -189,15 +191,17 @@
             this.groupFile.Controls.Add(this.btnBrowse);
             this.groupFile.Controls.Add(this.txtFileInput);
             this.groupFile.Controls.Add(this.label5);
+            this.groupFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupFile.Location = new System.Drawing.Point(21, 196);
             this.groupFile.Name = "groupFile";
             this.groupFile.Size = new System.Drawing.Size(746, 102);
             this.groupFile.TabIndex = 1;
             this.groupFile.TabStop = false;
-            this.groupFile.Text = "File Input";
+            this.groupFile.Text = "FILE INPUT";
             // 
             // btnOpen
             // 
+            this.btnOpen.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpen.Location = new System.Drawing.Point(633, 69);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(85, 23);
@@ -221,12 +225,13 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(21, 74);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(64, 13);
+            this.label6.Size = new System.Drawing.Size(76, 13);
             this.label6.TabIndex = 3;
             this.label6.Text = "Output File：";
             // 
             // btnBrowse
             // 
+            this.btnBrowse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBrowse.Location = new System.Drawing.Point(633, 31);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(85, 23);
@@ -250,52 +255,41 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(29, 36);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 13);
+            this.label5.Size = new System.Drawing.Size(67, 13);
             this.label5.TabIndex = 0;
             this.label5.Text = "Input File：";
             // 
             // groupText
             // 
-            this.groupText.Controls.Add(this.button1);
             this.groupText.Controls.Add(this.label8);
             this.groupText.Controls.Add(this.label7);
             this.groupText.Controls.Add(this.txtRichOutput);
             this.groupText.Controls.Add(this.txtRichInput);
+            this.groupText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupText.Location = new System.Drawing.Point(21, 15);
             this.groupText.Name = "groupText";
             this.groupText.Size = new System.Drawing.Size(746, 160);
             this.groupText.TabIndex = 0;
             this.groupText.TabStop = false;
-            this.groupText.Text = "Text Input";
-            // 
-            // button1
-            // 
-            this.button1.Enabled = false;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(346, 122);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(57, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = ">>>";
-            this.button1.UseVisualStyleBackColor = true;
+            this.groupText.Text = "TEXT INPUT";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(390, 20);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(42, 13);
+            this.label8.Size = new System.Drawing.Size(45, 13);
             this.label8.TabIndex = 3;
-            this.label8.Text = "Output:";
+            this.label8.Text = "Output";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(6, 20);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 13);
+            this.label7.Size = new System.Drawing.Size(36, 13);
             this.label7.TabIndex = 2;
-            this.label7.Text = "Input:";
+            this.label7.Text = "Input";
             // 
             // txtRichOutput
             // 
@@ -341,7 +335,7 @@
             this.groupAlgorithmOptions.Size = new System.Drawing.Size(797, 81);
             this.groupAlgorithmOptions.TabIndex = 2;
             this.groupAlgorithmOptions.TabStop = false;
-            this.groupAlgorithmOptions.Text = "Algorithm Options";
+            this.groupAlgorithmOptions.Text = "ALGORITHM OPTIONS";
             // 
             // btnImportKey
             // 
@@ -357,7 +351,7 @@
             // 
             this.cbKeyRequired.AutoCheck = false;
             this.cbKeyRequired.AutoSize = true;
-            this.cbKeyRequired.Location = new System.Drawing.Point(356, 42);
+            this.cbKeyRequired.Location = new System.Drawing.Point(359, 42);
             this.cbKeyRequired.Name = "cbKeyRequired";
             this.cbKeyRequired.Size = new System.Drawing.Size(90, 17);
             this.cbKeyRequired.TabIndex = 4;
@@ -555,7 +549,6 @@
         private System.Windows.Forms.RichTextBox txtRichInput;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label labStatus;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Label labDuration;
