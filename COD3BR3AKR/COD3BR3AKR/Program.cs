@@ -18,6 +18,10 @@ namespace COD3BR3AKR
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        
+        //Initialize logs the following way:
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         [STAThread]
         static void Main()
         {
@@ -26,6 +30,7 @@ namespace COD3BR3AKR
             {
                 if (createdNew)
                 {
+                    log.Info("Application booted up"); //This adds an "INFO" log to a file and console.
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
                     Application.Run(new UserLogin());
