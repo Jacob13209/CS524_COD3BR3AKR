@@ -37,6 +37,7 @@ namespace COD3BR3AKR
     public partial class MainForm : Form
     {
         private readonly int MAX_ENCRYPTION_LENGTH = 300;
+
         //Initialize logs the following way:
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -124,7 +125,7 @@ namespace COD3BR3AKR
 
         private void userManagementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _accountManagementForm = AccountManagement.CreateInstance(AccountManagement.UserManageMode.eManagement);
+            _accountManagementForm = AccountManagement.CreateInstance(AccountManagement.UserManageMode.eManagement, _loginForm._username);
             _accountManagementForm.TopMost = true;
             _accountManagementForm.Show();                      
         }
@@ -232,7 +233,7 @@ namespace COD3BR3AKR
         {
             if (validateInput() == false)
             {
-                log.Error(_loginForm._username + " clicked Main Form 'OK' with invalid input"); //This adds an "Error" log to a file and console.
+                log.Error(_loginForm._username + " clicked Main Form 'OK' with invalid input, using: '"+this._selectedAlogrithm+"'"); //This adds an "Error" log to a file and console.
                 MessageBox.Show("Please make sure you have entered or selected proper Input!\nMake sure to enter Customized Key if it is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -341,7 +342,7 @@ namespace COD3BR3AKR
                 (this._inputOption == InputOption.eFile && this._fileCryptionRes == false))
             {
                 string errorMsg     = string.Format("Failed to complete this {0}!", modeStr);
-                log.Error(_loginForm._username + " failed to complete " + modeStr); //This adds an "ERROR" log to a file and console.
+                log.Error(_loginForm._username + " failed to complete " + modeStr+" using '"+this._selectedAlogrithm+"'"); //This adds an "ERROR" log to a file and console.
                 this.labStatus.Text = errorMsg;
 
                 if (this._userMode == SystemMode.eDecryption && this.cbKeyRequired.Checked == true)

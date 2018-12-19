@@ -13,6 +13,8 @@ namespace COD3BR3AKR
     public partial class UserLogin : Form
     {
         private const int MAX_ATTEMPTS_ALLOWED = 10;
+
+        //Necessary for logging 
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public string _username = string.Empty;
@@ -70,7 +72,7 @@ namespace COD3BR3AKR
         private void linLableForgetPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             log.Info(_username + " clicked on reset link");
-            AccountManagement _accountManForm = AccountManagement.CreateInstance(AccountManagement.UserManageMode.eUserReset);
+            AccountManagement _accountManForm = AccountManagement.CreateInstance(AccountManagement.UserManageMode.eUserReset, _username);
             _accountManForm.TopMost = true;
             _accountManForm.Show();
         }
@@ -103,7 +105,7 @@ namespace COD3BR3AKR
         {
             //log.Info(_username + " clicked on SignUp ");
 
-            AccountManagement _accountManForm = AccountManagement.CreateInstance(AccountManagement.UserManageMode.eUserRegistration);
+            AccountManagement _accountManForm = AccountManagement.CreateInstance(AccountManagement.UserManageMode.eUserRegistration, _username);
             _accountManForm.TopMost = true;
             _accountManForm.Show();
         }

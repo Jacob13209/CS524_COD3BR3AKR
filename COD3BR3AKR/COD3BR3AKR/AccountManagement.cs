@@ -15,6 +15,7 @@ namespace COD3BR3AKR
     {
         private string _userID = string.Empty;
         private string _userName = string.Empty;
+        private static string loggedInUserName = string.Empty;
         private string _password = string.Empty;
         private string _userStatus = string.Empty;
         private string _confirmedPassword = string.Empty;
@@ -38,8 +39,14 @@ namespace COD3BR3AKR
 
         private static AccountManagement _onlyAccountManagement;
 
-        public static AccountManagement CreateInstance(UserManageMode mode)
+        public static AccountManagement CreateInstance(UserManageMode mode, string loggedInUsername)
         {
+            loggedInUserName = loggedInUsername;
+            if (loggedInUserName == null)
+            {
+                log.Error("Logged in user name is null");
+            }
+
             if (_onlyAccountManagement == null )
             {
                 _currentManageMode = mode;
@@ -141,14 +148,14 @@ namespace COD3BR3AKR
                         // add new user into system
                         if (UserManager.AddNewUser(this._userName, this._password) == true)
                         {
-                            log.Info("The new user '"+this._userName+"' was added successfully!");
+                            log.Info("The user "+ loggedInUserName + " added a new user '"+this._userName+"' successfully!");
                             MessageBox.Show("Registeration Successful! \nPlease login with new Username and Password.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.Close();
                         }
                         else
                         {
                             // unable to add user to the system
-                            log.Error("The new user '"+this._userName+"' failed to be added to the system");
+                            log.Error("The user '"+loggedInUserName+"' failed to add the new user "+ this._userName+"' to the system");
 
                             MessageBox.Show("Unable to add user to the system! \nPlease try again later.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
@@ -175,7 +182,7 @@ namespace COD3BR3AKR
                         else
                         {
                             // unable to reset password from system
-                            log.Error("The user '"+this._userName+"' failed to reset password");
+                            log.Error("The user '" + loggedInUserName + "' failed to reset password of user '"+ this._userName+"'");
                             MessageBox.Show("Unable to reset password at this time! \nPlease try again later.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
@@ -309,7 +316,7 @@ namespace COD3BR3AKR
 
             UserManager.AddNewUser(this._userName, this._password, this._userStatus);
 
-            log.Info("A new user '" + this._userName + "' was added to the system!");
+            log.Info("The user '" + loggedInUserName + "' added a new user '" + this._userName + "' successfully!");
 
             string infoMsg = string.Format("User {0} has been added to the system successfully!", this._userName);
 
@@ -337,7 +344,7 @@ namespace COD3BR3AKR
                     {                        
                         UserManager.UpdateUser(this._userID, this._userName, this._password, this._userStatus);
                     }
-                    log.Info("The user '" + this._userName + "' was updated in the system!");
+                    log.Info("The user '" + loggedInUserName + "' updated the user '" + this._userName + "' in the system successfully!");
 
                     string infoMsg = string.Format("User {0} has been updated successfully!", this._userName);
 
@@ -354,7 +361,8 @@ namespace COD3BR3AKR
             {
                 UserManager.RemoveUser(this._userID);
             }
-            log.Info("The user '" + this._userName + "' has been deleted from the system!");
+            log.Info("The user '" + loggedInUserName + "' deleted the user '" + this._userName + "' from the system successfully!");
+
             string infoMsg = string.Format("User {0} has been deleted from the system successfully!", this._userName);
 
             MessageBox.Show(infoMsg, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
