@@ -98,7 +98,7 @@ namespace COD3BR3AKR
         private void labSignOut_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             _isSignOut = true;
-            log.Info("User signed out of the application"); //This adds an "INFO" log to a file and console.
+            log.Info(_loginForm._username+" signed out of the application"); //This adds an "INFO" log to a file and console.
             _loginForm.Show();
             _loginForm.resetUserInput();
             this.Close();
@@ -232,7 +232,7 @@ namespace COD3BR3AKR
         {
             if (validateInput() == false)
             {
-                log.Error("User clicked Main Form 'OK' with invalid input"); //This adds an "Error" log to a file and console.
+                log.Error(_loginForm._username + " clicked Main Form 'OK' with invalid input"); //This adds an "Error" log to a file and console.
                 MessageBox.Show("Please make sure you have entered or selected proper Input!\nMake sure to enter Customized Key if it is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -257,7 +257,7 @@ namespace COD3BR3AKR
                         {
                             case InputOption.eFile:
                                 this._fileCryptionRes = myHelper.Encrypt(this._inputFilePath, this._outputFilePath);
-                                log.Info("User successfully selected encryption FILE as input."); //This adds an "INFO" log to a file and console.
+                                log.Info(_loginForm._username + " successfully selected encryption FILE as input."); //This adds an "INFO" log to a file and console.
                                 break;
                             case InputOption.eText:
                                 // check the input length to make sure it is less than the maximum allowed
@@ -271,7 +271,7 @@ namespace COD3BR3AKR
                                 }
                                 else
                                 {
-                                    log.Info("User successfully selected encryption STRING as input."); //This adds an "INFO" log to a file and console.
+                                    log.Info(_loginForm._username + " successfully selected encryption STRING as input."); //This adds an "INFO" log to a file and console.
                                     this._textOutput = myHelper.Encrypt(this._textInput);
                                     this.txtRichOutput.Text = this._textOutput;
                                 }                                
@@ -285,10 +285,10 @@ namespace COD3BR3AKR
                         {
                             case InputOption.eFile:
                                 this._fileCryptionRes = myHelper.Decrypt(this._inputFilePath, this._outputFilePath);
-                                log.Info("User successfully selected decryption FILE as input."); //This adds an "INFO" log to a file and console.
+                                log.Info(_loginForm._username + " successfully selected decryption FILE as input."); //This adds an "INFO" log to a file and console.
                                 break;
                             case InputOption.eText:
-                                log.Info("User successfully selected decryption STRING as input."); //This adds an "INFO" log to a file and console.
+                                log.Info(_loginForm._username + " successfully selected decryption STRING as input."); //This adds an "INFO" log to a file and console.
                                 this._textOutput = myHelper.Decrypt(this._textInput);
                                 this.txtRichOutput.Text = this._textOutput;
                                 break;
@@ -341,7 +341,7 @@ namespace COD3BR3AKR
                 (this._inputOption == InputOption.eFile && this._fileCryptionRes == false))
             {
                 string errorMsg     = string.Format("Failed to complete this {0}!", modeStr);
-                log.Error("User failed to complete "+modeStr); //This adds an "ERROR" log to a file and console.
+                log.Error(_loginForm._username + " failed to complete " + modeStr); //This adds an "ERROR" log to a file and console.
                 this.labStatus.Text = errorMsg;
 
                 if (this._userMode == SystemMode.eDecryption && this.cbKeyRequired.Checked == true)
@@ -352,7 +352,7 @@ namespace COD3BR3AKR
             }
             else
             {
-                log.Info("User successfully completed operation: "+modeStr+" using " +
+                log.Info(_loginForm._username + " successfully completed operation: " + modeStr+" using " +
                     this._selectedAlogrithm+" in "+this._stopWatch.ElapsedMilliseconds.ToString()+" Milliseconds!"); //This adds an "INFO" log to a file and console.
                 this.labStatus.Text   = string.Format("{0} completed successfully!", modeStr);
                 this.labDuration.Text = string.Format("{0} Milliseconds elapsed for this {1}",

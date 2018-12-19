@@ -25,6 +25,8 @@ namespace COD3BR3AKR
         public static readonly string USER_INFO_CONFIG = Application.StartupPath + @"\SystemUsers.xml";
         public static readonly string USER_ID_INIT     = Application.StartupPath + @"\Setup.ini";
 
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public enum UserManageMode
         {
             eUserRegistration,
@@ -139,12 +141,15 @@ namespace COD3BR3AKR
                         // add new user into system
                         if (UserManager.AddNewUser(this._userName, this._password) == true)
                         {
+                            log.Info("The new user '"+this._userName+"' was added successfully!");
                             MessageBox.Show("Registeration Successful! \nPlease login with new Username and Password.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.Close();
                         }
                         else
                         {
                             // unable to add user to the system
+                            log.Error("The new user '"+this._userName+"' failed to be added to the system");
+
                             MessageBox.Show("Unable to add user to the system! \nPlease try again later.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
@@ -163,12 +168,14 @@ namespace COD3BR3AKR
                     {
                         if (UserManager.ResetUser(this._userName, this._password) == true)
                         {
+                            log.Info("The user '"+this._userName+"' successfully reset password!");
                             MessageBox.Show("Password Reset Successful! \nPlease login with new password", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.Close();
                         }
                         else
                         {
                             // unable to reset password from system
+                            log.Error("The user '"+this._userName+"' failed to reset password");
                             MessageBox.Show("Unable to reset password at this time! \nPlease try again later.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
@@ -302,6 +309,8 @@ namespace COD3BR3AKR
 
             UserManager.AddNewUser(this._userName, this._password, this._userStatus);
 
+            log.Info("A new user '" + this._userName + "' was added to the system!");
+
             string infoMsg = string.Format("User {0} has been added to the system successfully!", this._userName);
 
             MessageBox.Show(infoMsg, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -328,6 +337,7 @@ namespace COD3BR3AKR
                     {                        
                         UserManager.UpdateUser(this._userID, this._userName, this._password, this._userStatus);
                     }
+                    log.Info("The user '" + this._userName + "' was updated in the system!");
 
                     string infoMsg = string.Format("User {0} has been updated successfully!", this._userName);
 
@@ -344,7 +354,7 @@ namespace COD3BR3AKR
             {
                 UserManager.RemoveUser(this._userID);
             }
-
+            log.Info("The user '" + this._userName + "' has been deleted from the system!");
             string infoMsg = string.Format("User {0} has been deleted from the system successfully!", this._userName);
 
             MessageBox.Show(infoMsg, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);

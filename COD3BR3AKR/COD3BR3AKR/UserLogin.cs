@@ -13,8 +13,9 @@ namespace COD3BR3AKR
     public partial class UserLogin : Form
     {
         private const int MAX_ATTEMPTS_ALLOWED = 10;
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        private string _username = string.Empty;
+        public string _username = string.Empty;
         private string _password = string.Empty;
         private int _numberOfFailures = 0;
 
@@ -39,11 +40,13 @@ namespace COD3BR3AKR
 
             if (UserManager.IsUserExist(_username) == true && UserManager.IsUserActive(_username) == false)
             {
+                log.Error(_username+" is INACTIVE, so failed logon"); //This adds an "Error" log to a file and console.
                 showError("Your User Account is INACTIVE! Try resetting Password.");
             }
             else if (UserManager.IsUserAuthPass(_username, _password) == true)
             {
                 // User Authentication success
+                log.Info(_username + " successfully logged in!"); //This adds an "Info" log to a file and console.
                 _mainForm = new MainForm(this);
                 _mainForm.Show();
                 this.Hide();
@@ -52,17 +55,21 @@ namespace COD3BR3AKR
             {
                 if (this._numberOfFailures >= MAX_ATTEMPTS_ALLOWED)
                 {
+                    log.Error(_username + " failed authentication more than " + MAX_ATTEMPTS_ALLOWED +" times so account became INACTIVE"); //This adds an "Error" log to a file and console.
+
                     UserManager.InactiveUser(this._username);
                 }
 
                 resetUserInput();
                 this._numberOfFailures++;
+                log.Error(_username + " failed authentication for the "+this._numberOfFailures+" time(s)"); //This adds an "Error" log to a file and console.
                 showError("The username or password is incorrect! Try again.");               
             }                        
         }
 
         private void linLableForgetPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            log.Info(_username + " clicked on reset link");
             AccountManagement _accountManForm = AccountManagement.CreateInstance(AccountManagement.UserManageMode.eUserReset);
             _accountManForm.TopMost = true;
             _accountManForm.Show();
@@ -78,6 +85,7 @@ namespace COD3BR3AKR
         {
             if (this.txtUserName.Text != "")
             {
+                //log.Info(_username + " updated name to "+ this.txtUserName.Text);
                 this._username = this.txtUserName.Text;
             }
         }
@@ -86,12 +94,15 @@ namespace COD3BR3AKR
         {
             if (this.txtPassword.Text != "")
             {
+                //log.Info(_username + " updated password");
                 this._password = this.txtPassword.Text;
             }
         }
 
         private void linLabelSignUP_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            //log.Info(_username + " clicked on SignUp ");
+
             AccountManagement _accountManForm = AccountManagement.CreateInstance(AccountManagement.UserManageMode.eUserRegistration);
             _accountManForm.TopMost = true;
             _accountManForm.Show();
