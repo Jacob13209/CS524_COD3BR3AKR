@@ -44,6 +44,9 @@ namespace COD3BR3AKR
         //where is the log file
         private static readonly string LOG_FILE_PATH = Application.StartupPath + @"\COD3BR3AKR.log";
 
+        //where is the user guide
+        private static readonly string USER_GUIDE_PATH = Application.StartupPath + @"\COD3BR3AKR_User_Guide.pdf";
+
         private SystemMode              _userMode;
         private InputOption             _inputOption;
         private SupportedAlogrithm      _selectedAlogrithm;
@@ -536,6 +539,25 @@ namespace COD3BR3AKR
             catch
             {
                 Process.Start(@"notepad.exe", LOG_FILE_PATH);
+            }
+        }
+
+        private void userDocumentationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(USER_GUIDE_PATH) == false)
+            {
+                MessageBox.Show("User Guide does not exist!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                log.Info(_loginForm._username + " failed to open User Guide due to not exist.");
+                return;
+            }
+            try
+            {
+                Process.Start(USER_GUIDE_PATH);
+            }
+            catch
+            {
+                MessageBox.Show("Unable to open PDF file!\nPlease make sure Adobe Acrobat Reader is installed.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                log.Info(_loginForm._username + " failed to open User Guide due missing Adobe Acrobat Reader.");
             }
         }
     }

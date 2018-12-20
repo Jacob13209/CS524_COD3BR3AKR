@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.systemLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,8 +70,6 @@
             this.btnReset = new System.Windows.Forms.Button();
             this.labDuration = new System.Windows.Forms.Label();
             this.myToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.systemLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.mainTabCtrl.SuspendLayout();
             this.tabEncrypt.SuspendLayout();
@@ -91,6 +91,21 @@
             this.mainMenuStrip.TabIndex = 0;
             this.mainMenuStrip.Text = "menuStrip1";
             // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.systemLogToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Text = "View";
+            // 
+            // systemLogToolStripMenuItem
+            // 
+            this.systemLogToolStripMenuItem.Name = "systemLogToolStripMenuItem";
+            this.systemLogToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.systemLogToolStripMenuItem.Text = "System Log";
+            this.systemLogToolStripMenuItem.Click += new System.EventHandler(this.systemLogToolStripMenuItem_Click);
+            // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -104,7 +119,7 @@
             this.advancedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.userManagementToolStripMenuItem});
             this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
-            this.advancedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.advancedToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.advancedToolStripMenuItem.Text = "Advanced";
             // 
             // userManagementToolStripMenuItem
@@ -128,6 +143,7 @@
             this.userDocumentationToolStripMenuItem.Name = "userDocumentationToolStripMenuItem";
             this.userDocumentationToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.userDocumentationToolStripMenuItem.Text = "User Documentation";
+            this.userDocumentationToolStripMenuItem.Click += new System.EventHandler(this.userDocumentationToolStripMenuItem_Click);
             // 
             // aboutCOD3BR3AKRToolStripMenuItem
             // 
@@ -157,7 +173,7 @@
             this.tabEncrypt.Location = new System.Drawing.Point(4, 22);
             this.tabEncrypt.Margin = new System.Windows.Forms.Padding(0);
             this.tabEncrypt.Name = "tabEncrypt";
-            this.tabEncrypt.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabEncrypt.Padding = new System.Windows.Forms.Padding(3);
             this.tabEncrypt.Size = new System.Drawing.Size(797, 316);
             this.tabEncrypt.TabIndex = 1;
             this.tabEncrypt.Text = "Encryption";
@@ -295,7 +311,7 @@
             this.tabDecrypt.BackColor = System.Drawing.Color.DarkGray;
             this.tabDecrypt.Location = new System.Drawing.Point(4, 22);
             this.tabDecrypt.Name = "tabDecrypt";
-            this.tabDecrypt.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabDecrypt.Padding = new System.Windows.Forms.Padding(3);
             this.tabDecrypt.Size = new System.Drawing.Size(797, 316);
             this.tabDecrypt.TabIndex = 2;
             this.tabDecrypt.Text = "Decryption";
@@ -452,21 +468,6 @@
             this.labDuration.Name = "labDuration";
             this.labDuration.Size = new System.Drawing.Size(0, 13);
             this.labDuration.TabIndex = 12;
-            // 
-            // viewToolStripMenuItem
-            // 
-            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.systemLogToolStripMenuItem});
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.viewToolStripMenuItem.Text = "View";
-            // 
-            // systemLogToolStripMenuItem
-            // 
-            this.systemLogToolStripMenuItem.Name = "systemLogToolStripMenuItem";
-            this.systemLogToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.systemLogToolStripMenuItem.Text = "System Log";
-            this.systemLogToolStripMenuItem.Click += new System.EventHandler(this.systemLogToolStripMenuItem_Click);
             // 
             // MainForm
             // 
