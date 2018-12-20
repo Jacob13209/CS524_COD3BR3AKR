@@ -41,6 +41,9 @@ namespace COD3BR3AKR
         //Initialize logs the following way:
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        //where is the log file
+        private static readonly string LOG_FILE_PATH = Application.StartupPath + @"\COD3BR3AKR.log";
+
         private SystemMode              _userMode;
         private InputOption             _inputOption;
         private SupportedAlogrithm      _selectedAlogrithm;
@@ -175,6 +178,7 @@ namespace COD3BR3AKR
                 string warningMsg = string.Format("{0} characters is the maximum input for Encryption! \nYou have entered {1} characters.", 
                                                   MAX_ENCRYPTION_LENGTH, 
                                                   this._textInput.Length);
+                log.Warn(string.Format("{0} entered {1} characters that exceeds the maximum supported {2} characters", _loginForm._username, this._textInput.Length, MAX_ENCRYPTION_LENGTH));
                 MessageBox.Show(warningMsg, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
@@ -464,7 +468,6 @@ namespace COD3BR3AKR
                 try
                 {
                     _accountManagementForm.Close();
-                    //TODO: Close the Log Viewer if necessary
                 } catch { }
                 return;
             }
@@ -515,6 +518,25 @@ namespace COD3BR3AKR
             _StringFlags.Alignment = StringAlignment.Center;
             _StringFlags.LineAlignment = StringAlignment.Center;
             g.DrawString(this.mainTabCtrl.TabPages[e.Index].Text, tabFont, textBrush, tabBounds, new StringFormat(_StringFlags));
+        }
+
+        private void systemLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(File.Exists(LOG_FILE_PATH) == false)
+            {
+                MessageBox.Show("Unable to find System Log File!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                log.Info(_loginForm._username + " Unable to find/open System Log.");
+                return;
+            }
+
+            try
+            {
+                Process.Start("notepad++.exe", LOG_FILE_PATH);
+            }
+            catch
+            {
+                Process.Start(@"notepad.exe", LOG_FILE_PATH);
+            }
         }
     }
 }

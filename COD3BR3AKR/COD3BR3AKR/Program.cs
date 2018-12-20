@@ -29,7 +29,7 @@ namespace COD3BR3AKR
             using (Mutex mutex = new Mutex(true, "COD3BR3AKR", out createdNew))
             {
                 if (createdNew)
-                {
+                {                    
                     log.Info("Application booted up"); //This adds an "INFO" log to a file and console.
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);

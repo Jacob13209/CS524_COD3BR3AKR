@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COD3BR3AKR", "COD3BR3AKR\COD3BR3AKR.csproj", "{517F1C91-DA35-42EF-8944-38549DD97574}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "COD3BR3AKR_Installer", "COD3BR3AKR_Installer\COD3BR3AKR_Installer.vdproj", "{77036431-A0FE-43AB-8C87-1C2E20528FAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{517F1C91-DA35-42EF-8944-38549DD97574}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{517F1C91-DA35-42EF-8944-38549DD97574}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{517F1C91-DA35-42EF-8944-38549DD97574}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77036431-A0FE-43AB-8C87-1C2E20528FAE}.Debug|Any CPU.ActiveCfg = Debug
+		{77036431-A0FE-43AB-8C87-1C2E20528FAE}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

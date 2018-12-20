@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Environment;
 
 namespace COD3BR3AKR
 {
@@ -23,8 +24,12 @@ namespace COD3BR3AKR
         private UserManageMode _manageMode;
         private static UserManageMode _currentManageMode;
 
-        public static readonly string USER_INFO_CONFIG = Application.StartupPath + @"\SystemUsers.xml";
-        public static readonly string USER_ID_INIT     = Application.StartupPath + @"\Setup.ini";
+        public static readonly string USER_INFO_CONFIG = string.Format(@"{0}\{1}\{2}", Environment.GetFolderPath(SpecialFolder.ApplicationData),
+                                                                                       Path.GetFileNameWithoutExtension(System.AppDomain.CurrentDomain.FriendlyName),
+                                                                                       "SystemUsers.xml");
+        public static readonly string USER_ID_INIT = string.Format(@"{0}\{1}\{2}", Environment.GetFolderPath(SpecialFolder.ApplicationData),
+                                                                                       Path.GetFileNameWithoutExtension(System.AppDomain.CurrentDomain.FriendlyName),
+                                                                                       "Setup.ini");
 
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -68,6 +73,11 @@ namespace COD3BR3AKR
         {
             this._manageMode = mode;            
             InitializeComponent();
+
+            if(Directory.Exists(Path.GetDirectoryName(USER_INFO_CONFIG)) == false)
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(USER_INFO_CONFIG));
+            }
         }
 
         private void AccountManagement_Shown(object sender, EventArgs e)
@@ -360,12 +370,12 @@ namespace COD3BR3AKR
             if (GetDialogResult(warningMsg) == true)
             {
                 UserManager.RemoveUser(this._userID);
-            }
-            log.Info("The user '" + loggedInUserName + "' deleted the user '" + this._userName + "' from the system successfully!");
+                log.Info("The user '" + loggedInUserName + "' deleted the user '" + this._userName + "' from the system successfully!");
 
-            string infoMsg = string.Format("User {0} has been deleted from the system successfully!", this._userName);
+                string infoMsg = string.Format("User {0} has been deleted from the system successfully!", this._userName);
 
-            MessageBox.Show(infoMsg, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(infoMsg, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }            
         }
 
 
